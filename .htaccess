@@ -1,0 +1,26 @@
+RewriteBase /
+RewriteEngine On
+addDefaultCharset utf-8
+RewriteRule ^user/(.+)$ /profile.php?username=$1 [L]
+RewriteRule ^gallery\/pic\/([0-9]+)\/?$ /gallery.php?pic=$1 [L]
+RewriteRule ^gallery/(.+)$ /gallery.php?username=$1 [L]
+RewriteRule ^post\/id\/([0-9]+)\/?$ /post?id=$1 [L]
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ $1.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^.*$ $1.php [L,QSA]
+RewriteCond %{HTTP_HOST} !^paskalnikita.com$ [NC]
+RewriteRule ^(.*)$ http://paskalnikita.com/$1 [L,R=301]
+ErrorDocument 404 http://www.paskalnikita.com/404
+RewriteRule ^404$ 404.html
+
+	php_value error_reporting -1
+	php_flag display_errors on
+	php_flag display_startup_errors on
+	php_flag ignore_repeated_source off
+	php_flag ignore_repeated_errors off
+	php_flag track_errors on
+	php_flag log_errors on
+	php_flag mysql.trace_mode on

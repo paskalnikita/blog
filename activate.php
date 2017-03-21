@@ -1,0 +1,37 @@
+<?php
+	include 'core/init.php';
+	logged_in_redirect();// доступно только НЕавторизированным пользователям
+	$title = "Activating";
+	include 'includes/overall/header.php';
+	if(isset($_GET['success']) === true && empty($_GET['success']) === true){
+	}else if(isset($_GET['email'], $_GET['email_code']) === true){
+		$email			= trim($_GET['email']);
+		$email_code		= trim($_GET['email_code']);
+		if(email_exists($email) === false){
+			$errors[] = 'We couldnt find your email!';
+		} else if(activate($email, $email_code) === false){
+			$errors[] = 'We have problems activating your account!';
+		}
+		if(empty($errors) === false){?>
+			<h2>Oops...</h2>
+			<p>Please, сheck the spelling of links!</p>
+<?php
+		echo "<div class='errors-output'>";
+			echo output_errors($errors);
+		echo "</div>";
+		}else{?>
+			<h2>Success!</h2>
+			<div class='success-output'>
+				<p>Thanks, you activated your accaunt!</p>
+			</div>
+				<br>
+				<p>Now you can log in!</p>
+<?php
+		}
+	}
+	else{
+		echo "<h2>Oops...</h2>";
+		echo 'Query for activating is empty!';
+	}
+	include 'includes/overall/footer.php';
+?>
