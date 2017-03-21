@@ -19,7 +19,7 @@
 					Travel more as much as you can!
 					<br>
 					<br>
-					Travaster.com is a new growing project,which don't have a team. If you want to help this project,please visit <a href='/contact'>contact page</a>
+					It is a new growing project,which don't have a team. If you want to help this project,please visit <a href='/contact'>contact page</a>
 					and write down in which sphere you can support this project. Also you can visit <a href='https://www.patreon.com/paskalnikita'>Patreon page</a>.
 					";
 			echo "</div>";
