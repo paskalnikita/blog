@@ -1,5 +1,5 @@
 # blog
-Full code of my blog on wich I am working roght now.
+Full code of my blog on wich I am working right now.
 
 # Functionality
  * Posting photos and keeping blogs
