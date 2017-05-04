@@ -15,15 +15,20 @@
 									echo '<img class="round" width="100%" src="/', $user_data['profile'], '" alt="',$user_data['first_name'],'\'s profile image">';
 								}?>
 						<ul>
-							<li class='user-menu'>
-								<a href="/user/<?php echo $user_data['username']; ?>">Profile</a>
-							</li>
-							<li class='user-menu' style='min-width:70px;'>
-								<a href="/message">Messages</a>
-							</li>
-							<li class='user-menu' style='min-width:70px;'>
-								<a href="/gallery/<?php echo $user_data['username'];?>">Photos</a>
-							</li>
+							<a class='white-link' href="/user/<?php echo $user_data['username']; ?>">
+								<li class='user-menu'>
+									Profile
+								</li>
+							</a>
+							<a class='white-link' href="/message">
+								<li class='user-menu' style='min-width:70px;'>
+									Messages
+								</li>
+							</a>
+								<a class='white-link' href="/gallery/<?php echo $user_data['username'];?>">
+									<li class='user-menu' style='min-width:70px;'>Photos
+									</li>
+								</a>
 <?php
 							$my_id = $user_data['user_id'];
 							$unread_messages=mysql_query("SELECT COUNT(id) AS unread FROM `messages` WHERE `to`=$my_id AND `unread`='1' ");
@@ -33,16 +38,20 @@
 									echo '+'.$calc_unread['unread']; //вывродим новые непрочитанные сообщения, количество
 								echo "</div>";
 							}?>
-							<li class='user-menu'>
-								<a href="/settings">Settings</a>
-							</li>
+							<a class='white-link' href="/settings">
+								<li class='user-menu'>
+									Settings
+								</li>
+							</a>
 <?php						// если зашел администратор показать дополнительные пункты меню
 							if(is_admin($user_data['user_id'])){
 								show_admin_menu();
 							}?>
-							<li class='user-menu'>
-								<a href="/logout">Log out</a>
-							</li>
+							<a class='white-link' href="/logout">
+								<li class='user-menu'>
+									Log out
+								</li>
+							</a>
 						</ul>
 						</div>
 				</div>

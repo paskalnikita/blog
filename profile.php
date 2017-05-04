@@ -70,7 +70,7 @@
 													You send friend request!
 												<br><br>
 <?php
-										}else{//если есть запрос от меня
+										}else{//если запрос не от меня
 											$user_two = $profile_data['user_id'];
 											$already_friends =  mysql_query("SELECT * FROM `friends` WHERE (`user_one`='$my_id' AND `user_two`='$user_two' AND `type`='1') OR (`user_one`='$user_two' AND `user_two`='$my_id' AND `type`='1')") or die(mysql_error());//я отправил запрос на добавление в друзья
 											$we_are_friends= mysql_fetch_assoc($already_friends);
@@ -79,18 +79,29 @@
 													Friends
 												</div>
 <?php
-								}else{//если не друзья показать кнопку добавить в друзья
+								}
+										$friend_request_from_user = mysql_query("SELECT * FROM `friends` WHERE `user_two`='$profile_id' AND `user_one`='$my_id' AND `type`='2'") or die(mysql_error());
+										$sended_request= mysql_fetch_assoc($friend_request_from_user);
+										$request_from_this_user=$sended_request['user_one'];
+								
+											if(!empty($request_from_this_user)){?>
+													Friend request from this user!
+												<br><br>
+<?php
+										}
+								if(!$we_are_friends && empty($request_from_this_user)){//если не друзья показать кнопку добавить в друзья
 ?>
 										<div class="add-friend-block">
 											<form action="" method='post'>
 												<input type="submit" name='add_friend' value="+" class="add-friend">
 											</form>
 										</div>
-<?php 							}
+<?php
+									}
 								}
-									echo '<img src="/', $profile_data['profile'], '" width="250px" style="margin-top:-22px;" class="round" alt=" ',$profile_data['first_name'], '\'s profile image">';
+									echo '<img src="/', $profile_data['profile'], '" width="250px"  style="margin-top:-22px;"class="round" alt=" ',$profile_data['first_name'], '\'s profile image">';
 								}else{
-										echo '<img src="/', $profile_data['profile'], '" width="250px" class="round" alt=" ',$profile_data['first_name'], '\'s profile image">';
+									echo '<img src="/', $profile_data['profile'], '" width="250px" class="round" alt=" ',$profile_data['first_name'], '\'s profile image">';
 									}
 							}else{
 									echo '<img src="/', $profile_data['profile'], '" width="250px"  class="round" alt=" ',$profile_data['first_name'], '\'s profile image">';
@@ -98,12 +109,16 @@
 						// если авторизированы вывести блоки с фото и сообщениями
 						if(logged_in()){?>
 							<div>
-								<div class='green-button' style="float:left;">
-									<a href="/gallery/<?php echo $profile_data['username'];?>">Photos</a>
-								</div>
-								<div class='green-button' style="float:right;margin-left:5px;">
-									<a href="/message?to=<?php echo $profile_data['user_id'];?>">Message</a>
-								</div>
+								<a href="/gallery/<?php echo $profile_data['username'];?>">
+									<div class='green-button' style="float:left;">
+										Photos
+									</div>
+								</a>
+								<a href="/message?to=<?php echo $profile_data['user_id'];?>">
+									<div class='green-button' style="float:right;margin-left:5px;">
+										Message
+									</div>
+								</a>
 							</div>
 <?php					}
 						if(!logged_in()){?>

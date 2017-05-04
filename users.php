@@ -4,7 +4,17 @@
 	protect_page();
 	include 'includes/overall/header.php';?>
 	<h1>Users list</h1>
-		 <section class="as">
+		<div style="float:left;margin-left: 5px;">
+			<form action="" method="post"> 
+			<input type="text" name="search" style="border:2px solid #40C781;height:19px;width: 270px;" placeholder="Enter username" class='round'/> 
+		</form>
+		</div>
+	<?php
+		$search_query=$_REQUEST['search'];
+			if(!empty($search_query)){
+				search_users($search_query);
+			}else{?>
+				<section class="as">
 					<div id="dd" class="dropdown-list" tabindex="1">Sort by:
 						<ul class="dropdown">
 							<li class="no-padding"><a href="users?sort_by_id">Id</a></li>
@@ -20,5 +30,6 @@
 				}elseif(!isset($_GET['sort_by_username']) && !isset($_GET['sort_by_id'])){
 					$sort_type = 'user_id';
 				}
-				show_users_list($sort_type);
+		show_users_list($sort_type);
+		}
 	include 'includes/overall/footer.php';?>

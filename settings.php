@@ -110,13 +110,13 @@
 		exit();
 	}
 	else{
-		echo '<div class="errors-output">';
+		echo '<div  style="width:280px;"class="errors-output">';
 			echo output_errors($errors);
 		echo '</div>';
 	}
 }
 if($_SESSION['update'] == 'success'){// вывод блока об обновлении информации
-		echo '<div class="success-output">';
+		echo '<div class="success-output" style="width:240px;">';
 			echo "Your information has been updated!";
 		echo '</div>';
 		$_SESSION['update'] = 'failure';
@@ -143,43 +143,42 @@ if($_SESSION['update'] == 'success'){// вывод блока об обновл�
 				Email:<br/>
 				<input type="text" name="email" value="<?php echo $user_data['email'];?>">
 			</li>
-			<div class="tree-settings"><font size="+1">Adress</font>
-				<details>
+			<div class="tree-settings"><font size="+1">Adress:</font>
+				<!-- <details> -->
 					<div>
 						<li class="no">
-							Сountry:<br/>
-							<input style="width:170px;" type="text" name="country" value="<?php echo $user_data['country'];?>">
+							<input style="width:170px;" type="text" name="country" placeholder="Country" value="<?php if(!empty($user_data['country'])) echo $user_data['country'];?>">
 						</li>
+							<br>
 					</div>
 					<div>
 						<li class="no">
-							State(if nessesory):<br/>
-							<input style="width:170px;" type="text" name="state" value="<?php echo $user_data['state'];?>">
+							<input style="width:170px;" type="text" name="state" placeholder="State(if nessesory)" value="<?php if(!empty($user_data['state'])) echo $user_data['state'];?>">
 						</li>
+						<br>
 					</div>
 					<div>
 						<li class="no">
-							City:<br/>
-							<input style="width:170px;" type="text" name="city" value="<?php echo $user_data['city'];?>">
+							<input style="width:170px;" type="text" name="city" placeholder="City" value="<?php if(!empty($user_data['city'])) echo $user_data['city'];?>">
 						</li>
+							<br>
 					</div>
 					<div>
 						<li class="no">
-							Street:<br/>
-							<input style="width:170px;" type="text" name="street" value="<?php echo $user_data['street'];?>">
+							<input style="width:170px;" type="text" name="street" placeholder="Street" value="<?php if(!empty($user_data['street'])) echo $user_data['street'];?>">
 						</li>
+							<br>
 					</div>
 					<div>
 						<li class="no">
-							House number:<br/>
-							<input style="width:173px;" type="text" name="house_number" value="<?php echo $user_data['house_number'];?>">
+							<input style="width:173px;" type="text" name="house_number" placeholder="House number" value="<?php if(!empty($user_data['house_number'])) echo $user_data['house_number'];?>">
 						</li>
+							<br>
 					</div>
-				</details>
+				<!-- </details> -->
 			</div>
 			<li>
-				Zip code:<br/>
-				<input type="text" name="zip_code" value="<?php echo $user_data['zip_code'];?>">
+				<input type="text" name="zip_code" placeholder="Zip code" value="<?php if(!empty($user_data['zip-code'])) echo $user_data['zip_code'];?>">
 			</li>
 			<li>
 				Gender:<br/>

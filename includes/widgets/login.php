@@ -4,12 +4,10 @@
 						<form action="/login" method="post">
 							<ul id='login'>
 								<li>
-									Username:<br/>
-									<input type="text" name="username">
+									<input type="text" name="username" placeholder="username">
 								</li>
 								<li>
-									Password:<br/>
-									<input type="password" name="password">
+									<input type="password" name="password" placeholder="password">
 								</li>
 								<li>
 									<input type="submit" value='Log in'> 
@@ -22,9 +20,11 @@
 											<span style='margin-left: 25px;font:normal 12px/1.8em Arial, Helvetica, sans-serif;'>Keep me logged in</span>
 										</label>
 								</li>
-								<li class='user-menu'>
-									<a href="/register">Register</a>
-								</li>
+								<a href="/register" class='white-link'>
+									<li class='user-menu'>
+										Register
+									</li>
+								</a>
 								<li>
 									Forgotten your <a href="/recover?mode=username">username</a> or <a href="/recover?mode=password">password</a>?
 								</li>

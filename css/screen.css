@@ -21,10 +21,15 @@ p {
 a:visited {
 	text-decoration:underline;
 	color: #0000CC;
+	outline: none;
 }
 a:hover {
 	color: #0000CC;
 	text-decoration:none;
+	outline: none;
+}
+a:active{
+	outline: none;
 }
 .delete-post-part{
 	float:right;
@@ -87,6 +92,8 @@ h2 {
 
 .user-menu{
 	width: 70px;
+	color: white;
+	text-decoration: none;
 	padding-left: 3px;
 	text-decoration: none;
 	border-radius: 3px;
@@ -166,7 +173,7 @@ a.top-button:active {
 	}
 #container {
 	width:935px;
-	min-height:650px;
+	/*min-height:650px;*/
 	overflow: auto;
 	margin:0 auto;
 	padding-right: 5px;
@@ -196,6 +203,7 @@ header {
 	background: rgb(64,199,129);
 	border-radius: 5px;
 	width:560px;
+	float: left;
 	height: auto;
 	padding: 3px;
 	margin-bottom: 5px;
@@ -304,7 +312,7 @@ select{
 .dropdown-list {
 	position: relative;
 	border-radius:5px 5px 0px 0px;
-	width: 190px;
+	width: 175px;
 	margin: 0 auto;
 	padding: 3px 3px;
 	background: #fff;
@@ -817,6 +825,7 @@ footer {
 	float:left;
 	margin-right:20px;
 	padding: 5px;
+	color:white;
 	background:rgb(64,199,129);
 	border-radius:5px;
 }
@@ -1006,6 +1015,11 @@ width:1.1em}
 	margin-top: -85px;
 	margin-left: 300px;
 	float:left;
+}
+
+.white-link{
+	color:white;
+	text-decoration: none;
 }
 
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Мар 21 2017 г., 20:46
+-- Время создания: Май 04 2017 г., 23:08
 -- Версия сервера: 5.5.25
 -- Версия PHP: 5.5.9
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `blogs` (
   `time` varchar(32) NOT NULL,
   `post` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=78 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=92 ;
 
 --
 -- Дамп данных таблицы `blogs`
@@ -47,7 +47,14 @@ INSERT INTO `blogs` (`id`, `user_id`, `date`, `time`, `post`) VALUES
 (47, '', '2016.07.18', '20:26:09', 'dsfsdf'),
 (48, '', '2016.07.18', '20:27:04', 'asdasd'),
 (74, '7', '2017.03.04', '18:02:25', 'zx'),
-(77, '7', '2017.03.04', '21:01:16', 'sdasas assd adasdaa dasdasd aasdas dasdadsa da ddad ads ');
+(78, '3423680', '2017.04.22', '23:30:22', 'Cosmos...\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n'),
+(79, '3423680', '2017.04.22', '23:36:43', 'Moon.'),
+(80, '3423680', '2017.04.23', '00:06:00', 'Mars'),
+(82, '7', '2017.04.27', '12:33:15', 'asdasd'),
+(83, '7', '2017.04.27', '12:33:22', 'asd'),
+(85, '7', '2017.04.28', '19:04:21', 'asdasd asda sd,n as'),
+(90, '3423682', '2017.05.02', '13:59:17', 'йцу йцу'),
+(91, '3423682', '2017.05.03', '23:36:24', 'ml; nkl жб  ж ж жд бжд ж ');
 
 -- --------------------------------------------------------
 
@@ -63,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `date` varchar(11) NOT NULL,
   `time` varchar(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=153 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=154 ;
 
 --
 -- Дамп данных таблицы `comments`
@@ -75,8 +82,9 @@ INSERT INTO `comments` (`id`, `post_id`, `username`, `comment`, `date`, `time`) 
 (105, 2, 'paskalnikita', 'http://paskalnikita.com/user/paskalnikita', '2016.02.27', '15:59:50'),
 (119, 2, 'paskalnikita', 'as', '2017.02.22', '19:47:01'),
 (121, 2, 'paskalnikita', 'asd', '2017.02.22', '19:47:56'),
-(150, 2, 'paskalnikita', '<font color="#FF4040"><b>This post was deleted by administrator!</b></font>', '2017.02.22', '20:10:52'),
-(152, 2, 'paskalnikita', 'asd', '2017.02.24', '14:34:54');
+(151, 2, 'paskalnikita', 'asdasdas', '2017.04.27', '12:33:36'),
+(152, 2, 'paskalnikita', 'asdsad', '2017.04.28', '23:30:25'),
+(153, 2, 'paskalnikita', 'asdasd', '2017.04.28', '23:31:37');
 
 -- --------------------------------------------------------
 
@@ -99,13 +107,9 @@ INSERT INTO `friends` (`user_one`, `user_two`, `type`) VALUES
 (1, 7, '1'),
 (12345, 7, '1'),
 (12345, 7, '1'),
-(15, 7, '2'),
-(3423663, 7, '2'),
-(123, 7, '2'),
-(3423666, 7, '2'),
-(3423664, 7, '2'),
 (122, 7, '2'),
-(3423675, 7, '2');
+(12345, 3423682, '1'),
+(3423682, 7, '1');
 
 -- --------------------------------------------------------
 
@@ -119,80 +123,82 @@ CREATE TABLE IF NOT EXISTS `gallery_comments` (
   `user_id` int(32) NOT NULL,
   `comment` varchar(255) NOT NULL,
   `date` varchar(12) NOT NULL,
+  `time` varchar(8) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=84 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=88 ;
 
 --
 -- Дамп данных таблицы `gallery_comments`
 --
 
-INSERT INTO `gallery_comments` (`id`, `pic_id`, `user_id`, `comment`, `date`) VALUES
-(3, 78, 7, 'asd', '2017-02-18'),
-(6, 78, 7, 'привет', '18 Feb 2017'),
-(7, 93, 7, 'фыв', '19 Feb 2017'),
-(8, 93, 7, 'фывфыв', '19 Feb 2017'),
-(9, 93, 7, 'фывфыв', '19 Feb 2017'),
-(10, 93, 7, 'фыв', '19 Feb 2017'),
-(11, 93, 7, 'фывфыв', '19 Feb 2017'),
-(12, 93, 7, 'asd', '20 Feb 2017'),
-(13, 93, 7, 'zzz', '20 Feb 2017'),
-(14, 0, 0, 'qqqq', '20 Feb 2017'),
-(15, 0, 0, 'aaaa', '20 Feb 2017'),
-(16, 93, 7, '11', '20 Feb 2017'),
-(17, 93, 7, 'qwertyu', '20 Feb 2017'),
-(20, 94, 7, '94', '20 Feb 2017'),
-(21, 94, 7, '94', '20 Feb 2017'),
-(22, 94, 7, '94', '20 Feb 2017'),
-(23, 94, 7, '94', '20 Feb 2017'),
-(24, 105, 7, 'qwerty', '20 Feb 2017'),
-(25, 105, 7, 'jj', '20 Feb 2017'),
-(26, 105, 7, 'qq', '20 Feb 2017'),
-(27, 104, 7, 'waerdtfyguh', '20 Feb 2017'),
-(28, 97, 7, 'awertfy', '20 Feb 2017'),
-(29, 121, 7, 'йцу', '22 Feb 2017'),
-(30, 112, 7, 'йц', '22 Feb 2017'),
-(31, 119, 7, 'last last c', '22 Feb 2017'),
-(33, 110, 0, 'j', '22 Feb 2017'),
-(34, 78, 7, 'llll', '23 Feb 2017'),
-(37, 112, 12345, 'asd', '23 Feb 2017'),
-(38, 112, 12345, 'asd', '23 Feb 2017'),
-(39, 112, 7, 'fgghhg', '28 Feb 2017'),
-(40, 85, 7, 'asd', '28 Feb 2017'),
-(41, 85, 7, 'asdasd', '28 Feb 2017'),
-(42, 85, 7, 'as', '28 Feb 2017'),
-(43, 85, 7, 'as', '28 Feb 2017'),
-(44, 85, 7, 'asdas', '28 Feb 2017'),
-(45, 85, 7, 'q', '28 Feb 2017'),
-(46, 78, 7, 'asdasd', '01 Mar 2017'),
-(47, 78, 7, 'asdas', '01 Mar 2017'),
-(48, 78, 7, 'asda', '01 Mar 2017'),
-(49, 78, 7, 'asd', '01 Mar 2017'),
-(50, 94, 7, 'asdasd', '01 Mar 2017'),
-(51, 94, 7, 'asd', '01 Mar 2017'),
-(52, 94, 7, 'a', '01 Mar 2017'),
-(53, 94, 7, 'a', '01 Mar 2017'),
-(54, 94, 7, 'd', '01 Mar 2017'),
-(55, 94, 7, 'as', '01 Mar 2017'),
-(56, 94, 7, 'aa', '01 Mar 2017'),
-(57, 94, 7, '123', '01 Mar 2017'),
-(58, 94, 7, 'fdsasd', '01 Mar 2017'),
-(59, 94, 7, '00', '01 Mar 2017'),
-(60, 94, 7, '[[', '01 Mar 2017'),
-(61, 122, 7, 'vcxxzcv', '01 Mar 2017'),
-(62, 122, 7, 'asdas', '01 Mar 2017'),
-(63, 122, 7, 'asdas', '01 Mar 2017'),
-(66, 94, 7, 'as', '02 Mar 2017'),
-(71, 87, 7, 'asda', '04 Mar 2017'),
-(72, 87, 7, 'asdads', '04 Mar 2017'),
-(73, 87, 7, 'asdads', '04 Mar 2017'),
-(74, 87, 7, 'asdads', '04 Mar 2017'),
-(75, 87, 7, 'asdads', '04 Mar 2017'),
-(76, 87, 7, 'asdasdasdas da sdasdasdasdasdasdasdas da sdasdasdasdasdasdasdas da sdasdasdasdasdasdasdas da sdasdasdasdasdasdasdas da sdasdasdasdasdasdasdas da sdasdasdasdasdasdasdas da sdasdasdasdasdasdasdas da sdasdasdasdasdasdasdas da sdasdasdasdasdasdasdas da sdasda', '04 Mar 2017'),
-(77, 87, 7, 'asd', '04 Mar 2017'),
-(80, 131, 7, 'a', '04 Mar 2017'),
-(81, 131, 7, 'asdasd', '04 Mar 2017'),
-(82, 131, 7, 'asdasd', '04 Mar 2017'),
-(83, 131, 7, 'asdasd', '04 Mar 2017');
+INSERT INTO `gallery_comments` (`id`, `pic_id`, `user_id`, `comment`, `date`, `time`) VALUES
+(3, 78, 7, 'asd', '2017-02-18', ''),
+(6, 78, 7, 'привет', '18 Feb 2017', ''),
+(7, 93, 7, 'фыв', '19 Feb 2017', ''),
+(8, 93, 7, 'фывфыв', '19 Feb 2017', ''),
+(9, 93, 7, 'фывфыв', '19 Feb 2017', ''),
+(10, 93, 7, 'фыв', '19 Feb 2017', ''),
+(11, 93, 7, 'фывфыв', '19 Feb 2017', ''),
+(12, 93, 7, 'asd', '20 Feb 2017', ''),
+(13, 93, 7, 'zzz', '20 Feb 2017', ''),
+(14, 0, 0, 'qqqq', '20 Feb 2017', ''),
+(15, 0, 0, 'aaaa', '20 Feb 2017', ''),
+(16, 93, 7, '11', '20 Feb 2017', ''),
+(20, 94, 7, '94', '20 Feb 2017', ''),
+(21, 94, 7, '94', '20 Feb 2017', ''),
+(22, 94, 7, '94', '20 Feb 2017', ''),
+(23, 94, 7, '94', '20 Feb 2017', ''),
+(24, 105, 7, 'qwerty', '20 Feb 2017', ''),
+(25, 105, 7, 'jj', '20 Feb 2017', ''),
+(26, 105, 7, 'qq', '20 Feb 2017', ''),
+(27, 104, 7, 'waerdtfyguh', '20 Feb 2017', ''),
+(28, 97, 7, 'awertfy', '20 Feb 2017', ''),
+(29, 121, 7, 'йцу', '22 Feb 2017', ''),
+(30, 112, 7, 'йц', '22 Feb 2017', ''),
+(31, 119, 7, 'last last c', '22 Feb 2017', ''),
+(33, 110, 0, 'j', '22 Feb 2017', ''),
+(34, 78, 7, 'llll', '23 Feb 2017', ''),
+(37, 112, 12345, 'asd', '23 Feb 2017', ''),
+(38, 112, 12345, 'asd', '23 Feb 2017', ''),
+(39, 112, 7, 'fgghhg', '28 Feb 2017', ''),
+(40, 85, 7, 'asd', '28 Feb 2017', ''),
+(41, 85, 7, 'asdasd', '28 Feb 2017', ''),
+(42, 85, 7, 'as', '28 Feb 2017', ''),
+(43, 85, 7, 'as', '28 Feb 2017', ''),
+(44, 85, 7, 'asdas', '28 Feb 2017', ''),
+(45, 85, 7, 'q', '28 Feb 2017', ''),
+(46, 78, 7, 'asdasd', '01 Mar 2017', ''),
+(47, 78, 7, 'asdas', '01 Mar 2017', ''),
+(48, 78, 7, 'asda', '01 Mar 2017', ''),
+(49, 78, 7, 'asd', '01 Mar 2017', ''),
+(50, 94, 7, 'asdasd', '01 Mar 2017', ''),
+(51, 94, 7, 'asd', '01 Mar 2017', ''),
+(52, 94, 7, 'a', '01 Mar 2017', ''),
+(53, 94, 7, 'a', '01 Mar 2017', ''),
+(54, 94, 7, 'd', '01 Mar 2017', ''),
+(55, 94, 7, 'as', '01 Mar 2017', ''),
+(56, 94, 7, 'aa', '01 Mar 2017', ''),
+(57, 94, 7, '123', '01 Mar 2017', ''),
+(58, 94, 7, 'fdsasd', '01 Mar 2017', ''),
+(59, 94, 7, '00', '01 Mar 2017', ''),
+(60, 94, 7, '[[', '01 Mar 2017', ''),
+(61, 122, 7, 'vcxxzcv', '01 Mar 2017', ''),
+(62, 122, 7, 'asdas', '01 Mar 2017', ''),
+(63, 122, 7, 'asdas', '01 Mar 2017', ''),
+(66, 94, 7, 'as', '02 Mar 2017', ''),
+(71, 87, 7, 'asda', '04 Mar 2017', ''),
+(72, 87, 7, 'asdads', '04 Mar 2017', ''),
+(73, 87, 7, 'asdads', '04 Mar 2017', ''),
+(74, 87, 7, 'asdads', '04 Mar 2017', ''),
+(75, 87, 7, 'asdads', '04 Mar 2017', ''),
+(76, 87, 7, 'asdasdasdas da sdasdasdasdasdasdasdas da sdasdasdasdasdasdasdas da sdasdasdasdasdasdasdas da sdasdasdasdasdasdasdas da sdasdasdasdasdasdasdas da sdasdasdasdasdasdasdas da sdasdasdasdasdasdasdas da sdasdasdasdasdasdasdas da sdasdasdasdasdasdasdas da sdasda', '04 Mar 2017', ''),
+(77, 87, 7, 'asd', '04 Mar 2017', ''),
+(80, 131, 7, 'a', '04 Mar 2017', ''),
+(81, 131, 7, 'asdasd', '04 Mar 2017', ''),
+(82, 131, 7, 'asdasd', '04 Mar 2017', ''),
+(83, 131, 7, 'asdasd', '04 Mar 2017', ''),
+(85, 144, 12345, 'qwe', '01 May 2017', ''),
+(87, 144, 12345, 'qwe qwe qwqw у qeww 17:22', '01 May 2017', '17:22:15');
 
 -- --------------------------------------------------------
 
@@ -207,7 +213,7 @@ CREATE TABLE IF NOT EXISTS `gallery_pics` (
   `description` varchar(255) NOT NULL,
   `upload_date` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=133 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=145 ;
 
 --
 -- Дамп данных таблицы `gallery_pics`
@@ -215,16 +221,31 @@ CREATE TABLE IF NOT EXISTS `gallery_pics` (
 
 INSERT INTO `gallery_pics` (`id`, `user_id`, `pic_name`, `description`, `upload_date`) VALUES
 (77, 7, '18.jpg', '', '10 Aug 2016'),
-(78, 12345, '2.jpg', '12asd3', '12 Aug 2016'),
-(79, 7, '3.jpg', '12   3', '12 Aug 2016'),
-(80, 12345, '4.jpg', 'asd123', '12 Aug 2016'),
-(88, 7, '5.jpg', '12asdasdzxc3', '12 Aug 2016'),
-(89, 12345, '11.jpg', '123', '12 Aug 2016'),
+(78, 12345, '19.jpg', '123', '12 Aug 2016'),
+(80, 7, '21.jpg', '', '13 Aug 2016'),
+(85, 12345, '25.jpg', '', '21 Aug 2016'),
+(87, 7, '25.jpg', '', '21 Aug 2016'),
+(92, 7, '26.jpg', '', '21 Aug 2016'),
+(93, 12345, '27.jpg', '', '24 Jan 2017'),
+(94, 7, '28.jpg', '', '07 Feb 2017'),
+(97, 7, '31.jpg', 'йцуйц', '09 Feb 2017'),
+(102, 7, '36.jpg', '', '09 Feb 2017'),
+(105, 7, '39.jpg', '', '09 Feb 2017'),
+(110, 12345, '44.jpg', '', '17 Feb 2017'),
+(111, 12345, '30.jpg', '', '18 Feb 2017'),
+(112, 12345, '30.jpg', '', '18 Feb 2017'),
+(122, 7, '30.jpg', 'q q q  q q q qa a s,d,a sm,m as, mads, ads бфывбь da sd,masd, a, msd,m asd бьфы бьвфбь sd бьфыбьв a sdm,a sd,ma sdm,a sd,ma sdm,a da,smd фбьв adm a,smd as,mda sd as dq q q  q q q qa a s,d,a sm,m as, mads, ads бфывбь da sd,masd, a, msd,m asd бьфы бьвфбь sd', '01 Mar 2017'),
 (125, 7, '1488401097.jpg', '', '01 Mar 2017'),
 (129, 7, '1488401329.jpg', '', '01 Mar 2017'),
 (130, 12345, '1488401330.jpg', '', '01 Mar 2017'),
 (131, 7, '14884013767.jpg', '', '01 Mar 2017'),
-(132, 12345, '148840137812345.jpg', '', '01 Mar 2017');
+(132, 12345, '148840137812345.jpg', '', '01 Mar 2017'),
+(133, 3423680, '14928979413423680.jpg', 'ja kek 0 odir raz v den', '22 Apr 2017'),
+(135, 7, '14932885517.jpg', '', '27 Apr 2017'),
+(137, 7, '14932887937.jpg', '', '27 Apr 2017'),
+(139, 7, '14932888947.jpg', '', '27 Apr 2017'),
+(142, 7, '14932890727.jpg', '', '27 Apr 2017'),
+(144, 3423682, '14934772343423682.jpg', 'Potato!', '29 Apr 2017');
 
 -- --------------------------------------------------------
 
@@ -241,7 +262,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `date` varchar(10) NOT NULL,
   `time` varchar(8) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=352 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=362 ;
 
 --
 -- Дамп данных таблицы `messages`
@@ -333,7 +354,17 @@ INSERT INTO `messages` (`id`, `from`, `to`, `message`, `unread`, `date`, `time`)
 (348, 7, 7, 'sdf', '0', '2017.02.22', '19:18:31'),
 (349, 7, 7, 'll', '0', '2017.02.22', '19:18:48'),
 (350, 7, 1, 'ads', '1', '2017.03.03', '01:45:54'),
-(351, 7, 1, 'czxc', '1', '2017.03.03', '01:45:57');
+(351, 7, 1, 'czxc', '1', '2017.03.03', '01:45:57'),
+(352, 3423682, 3423682, 'qwe', '0', '2017.05.01', '17:26:05'),
+(353, 3423682, 12345, 'qwe qwe qwe', '0', '2017.05.01', '17:26:22'),
+(354, 12345, 3423682, 'uuu  г гг ', '0', '2017.05.01', '17:30:06'),
+(355, 12345, 3423682, 'йцуйцу', '0', '2017.05.01', '17:30:12'),
+(356, 3423682, 12345, 'qwe', '0', '2017.05.01', '17:32:31'),
+(357, 12345, 3423682, 'qweqweqw', '0', '2017.05.01', '17:33:04'),
+(358, 3423682, 12345, 'jhbkn', '0', '2017.05.01', '17:33:57'),
+(359, 7, 7, 'qwe', '0', '2017.05.03', '23:35:02'),
+(360, 3423682, 3423682, 'pp', '0', '2017.05.03', '23:36:39'),
+(361, 7, 3423682, 'ppppkm', '0', '2017.05.03', '23:37:12');
 
 -- --------------------------------------------------------
 
@@ -370,7 +401,7 @@ CREATE TABLE IF NOT EXISTS `pic_likes` (
   `pic_id` int(32) NOT NULL,
   `user_id` int(32) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=85 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=88 ;
 
 --
 -- Дамп данных таблицы `pic_likes`
@@ -381,7 +412,10 @@ INSERT INTO `pic_likes` (`id`, `pic_id`, `user_id`) VALUES
 (81, 78, 7),
 (82, 132, 7),
 (83, 111, 7),
-(84, 93, 7);
+(84, 93, 7),
+(85, 133, 7),
+(86, 144, 12345),
+(87, 97, 3423682);
 
 -- --------------------------------------------------------
 
@@ -395,7 +429,7 @@ CREATE TABLE IF NOT EXISTS `support` (
   `message` text NOT NULL,
   `date` varchar(14) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Дамп данных таблицы `support`
@@ -407,7 +441,8 @@ INSERT INTO `support` (`id`, `user_id`, `message`, `date`) VALUES
 (3, 7, 'asda', '0000-00-00'),
 (4, 7, 'asdasd', '0000-00-00'),
 (5, 7, 'adasd', '05-Mar-2017'),
-(6, 7, 'asd', '05-Mar-2017');
+(6, 7, 'asd', '05-Mar-2017'),
+(7, 7, 'dfs', '07-Apr-2017');
 
 -- --------------------------------------------------------
 
@@ -425,16 +460,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   `birth_day` int(2) NOT NULL,
   `birth_month` int(2) NOT NULL,
   `birth_year` int(4) NOT NULL,
-  `country` varchar(32) NOT NULL DEFAULT 'None',
-  `state` varchar(32) NOT NULL DEFAULT 'None',
-  `city` varchar(32) NOT NULL DEFAULT 'None',
-  `street` varchar(32) NOT NULL DEFAULT 'None',
+  `country` varchar(32) NOT NULL,
+  `state` varchar(32) NOT NULL,
+  `city` varchar(32) NOT NULL,
+  `street` varchar(32) NOT NULL,
   `house_number` int(7) NOT NULL,
   `zip_code` varchar(11) NOT NULL DEFAULT '0',
   `email` varchar(32) NOT NULL,
   `email_code` varchar(32) NOT NULL,
   `password_recover` int(11) NOT NULL,
-  `profile` varchar(55) NOT NULL DEFAULT 'images/profile/default.png',
+  `profile` varchar(55) NOT NULL DEFAULT 'images/profile/default.jpg',
   `reg_date` varchar(11) NOT NULL,
   `ip` varchar(32) NOT NULL,
   `type` int(11) NOT NULL DEFAULT '0',
@@ -443,7 +478,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `remember_token` varchar(32) NOT NULL,
   `active` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3423680 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3423683 ;
 
 --
 -- Дамп данных таблицы `users`
@@ -451,11 +486,11 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `first_name`, `last_name`, `gender`, `birth_day`, `birth_month`, `birth_year`, `country`, `state`, `city`, `street`, `house_number`, `zip_code`, `email`, `email_code`, `password_recover`, `profile`, `reg_date`, `ip`, `type`, `online_time`, `allow_email`, `remember_token`, `active`) VALUES
 (1, 'nikitapaskal', 'bf8064f79da227ae08521a23cf8e24d3', 'nikitapaskal', 'nikitapaskal', '', 0, 0, 0, 'None', 'None', 'None', 'None', 0, 'None', 'nikitapaskal@gmail.com', '78ce37922516bce19a4756ca5fa889a0', 0, 'images/profile/default.png', '15.07.2015', '0', 0, 1487299583, 1, '', 1),
-(7, 'paskalnikita', 'bf8064f79da227ae08521a23cf8e24d3', 'Nikita', 'Paskal', 'male', 7, 7, 1997, 'America', '', '', '', 0, '0', 'paskalnikita@gmail.com', '7', 0, 'images/profile/3b0f209632.jpg', '07.07.2017', '178.124.150.28', 1, 1488742712, 1, '54061746844b0206fb4a87a09a77b5e0', 1),
+(7, 'paskalnikita', 'bf8064f79da227ae08521a23cf8e24d3', 'Nikita', 'Paskal', 'male', 7, 7, 1997, 'America', '', '', '', 0, '', 'paskalnikita@gmail.com', '7', 0, 'images/profile/75d83f2110.jpg', '07.07.2017', '178.124.150.28', 1, 1493847432, 1, '54061746844b0206fb4a87a09a77b5e0', 1),
 (15, 'test', 'bf8064f79da227ae08521a23cf8e24d3', 'Eddy', 'Wazowski', 'male', 19, 3, 1985, 'sd', 'popop', 'sdfwerwer', 'sdfwer', 123, '0123123', 'addywaz@mail.com', 'd056d8daeb0fbbc769479648dfa233e5', 0, 'images/profile/8be195c569.jpg', '05.04.2015', '0', 0, 0, 1, '', 1),
 (122, 'dfsdf', 'sdfsdf', 'sdfs', 'dfsdfs', 'df', 0, 0, 0, 'None', 'None', 'None', 'None', 0, 'None', '', '', 0, 'images/profile/default.png', '', '0', 0, 1454416728, 1, '', 1),
 (123, 'user', 'd3f39ba627be52f2f675acf440ad82a5', 'useruser', 'UsernameUsername', '', 0, 0, 0, 'None', 'None', 'None', 'None', 0, 'None', 'user@mail.com', 'eb4b9bc55055b1884dbade6d67c94a1f', 0, 'images/profile/default.png', '14.07.2015', '0', 0, 0, 1, '', 1),
-(12345, 'Victor', 'bf8064f79da227ae08521a23cf8e24d3', 'Victor', 'Horn', 'male', 5, 9, 1976, 'None', 'None', 'None', 'None', 9, '32483', 'Victor@mail.com', '7b80e0f640b9da5669f23f24b5ed26cc', 0, 'images/profile/b7afad3ad8.jpg', '28.04.2015', '0', 0, 1488656064, 1, '54061746844b0206fb4a87a09a77b5e0', 1),
+(12345, 'Victor', 'bf8064f79da227ae08521a23cf8e24d3', 'Victor', 'Horn', 'male', 5, 9, 1976, 'None', 'None', 'None', 'None', 9, '32483', 'Victor@mail.com', '7b80e0f640b9da5669f23f24b5ed26cc', 0, 'images/profile/b7afad3ad8.jpg', '28.04.2015', '0', 0, 1493652852, 1, '54061746844b0206fb4a87a09a77b5e0', 1),
 (3423660, 'paskalnikita123', '691ff2d270100d44fb9bd7383ff4b9ac', 'paskalnikita123', 'paskalnikita123', '', 0, 0, 0, 'None', 'None', 'None', 'None', 0, 'None', 'paskalnikita123@gamil.com', '28b08154dca753dc0aa0ad0e1fbbed94', 0, 'images/profile/default.png', '14.07.2015', '0', 0, 0, 1, '', 1),
 (3423662, '-----1', '1049633bd35e12b9c63a23a53c4fbaca', '-----1-----1', '-----1-----1', '', 0, 0, 0, 'None', 'None', 'None', 'None', 0, 'None', '-----1-----1@mail.com', '059089ba62e34c420e2f050e2adfc9da', 0, 'images/profile/default.png', '17.07.2015', '0', 0, 0, 1, '', 1),
 (3423663, 'paskalnikita123paskalnikita123', '12c423274bb4d58691da27c443346369', 'paskalnikita123paskalnikita123', 'paskalnikita123', '', 0, 0, 0, 'None', 'None', 'None', 'None', 0, 'None', 'paskalnikita123@yahoo.com', '2407e68afb52f221e57a0b911d010176', 0, 'images/profile/default.png', '21.07.2015', '0', 0, 0, 1, '', 1),
@@ -474,7 +509,9 @@ INSERT INTO `users` (`user_id`, `username`, `password`, `first_name`, `last_name
 (3423676, 'poiuytrewqpoiuytrewq', 'ee919bd4cb26eab621481932ef432691', 'poiuytrewq', 'poiuytrewq', '', 0, 0, 0, 'None', 'None', 'None', 'None', 0, 'None', 'poiuytsrewq@mai.com', '1721b19c446a0fd9cc63469ef364d284', 0, 'images/profile/default.png', '23.03.2016', '1270', 0, 0, 1, '', 0),
 (3423677, 'poiupoiuytrewqytrewq', '48f1348b70a6add4db92cf0d02c70f0e', 'poiupoiuytrewqytrewq', 'poiupoiuytrewqytrewq', '', 0, 0, 0, 'None', 'None', 'None', 'None', 0, 'None', 'poiupoiuytrewqytrewq@mail.cas', '580a34ad599343b61903559ddab45b3a', 0, 'images/profile/default.png', '23.03.2016', '127.0.0.1', 0, 0, 1, '', 0),
 (3423678, 'qweqweqwe', '6451eb7ed6c6e7ce84cb71664ed0e714', 'qwe', 'qwe', '', 0, 0, 0, 'None', 'None', 'None', 'None', 0, '0', 'qwe@qwe.qwe', '2339b858ecf493a8b7ba7425906da363', 0, 'images/profile/default.png', '22.02.2017', '127.0.0.1', 0, 0, 1, '', 0),
-(3423679, '123', 'f5bb0c8de146c67b44babbf4e6584cc0', 'qwe', 'qwe', '', 0, 0, 0, 'None', 'None', 'None', 'None', 0, '0', 'qwe@123.com', '6139986e54c643a52090cc211c096676', 0, 'images/profile/default.png', '01.03.2017', '127.0.0.1', 0, 0, 1, '', 0);
+(3423679, '123', 'f5bb0c8de146c67b44babbf4e6584cc0', 'qwe', 'qwe', '', 0, 0, 0, 'None', 'None', 'None', 'None', 0, '0', 'qwe@123.com', '6139986e54c643a52090cc211c096676', 0, 'images/profile/default.png', '01.03.2017', '127.0.0.1', 0, 0, 1, '', 0),
+(3423680, 'commadot', '0d6bde662f1e15498ef6284a55ad9590', 'Igor', 'Zmitrovich', '', 0, 0, 0, 'None', 'None', 'None', 'None', 0, '0', 'izmitrowicz@gmail.com', '5e4aac883c8d468309adc419d085fb92', 0, 'images/profile/default.png', '22.04.2017', '127.0.0.1', 0, 1492898787, 1, '', 1),
+(3423682, 'fujitsu', '317aefc9ae4d7bba31157640c445bc48', 'fujitsu', 'fujitsu', 'male', 18, 1, 1999, 'fujitsu', '', '', '', 0, '', 'fujitsu@fujitsu.com', '77a652330bfaf54824d3ab30a4eb4de9', 0, 'images/profile/default.jpg', '29.04.2017', '127.0.0.1', 0, 1493853435, 1, 'f15db562705f714d9dc2046bdfad2484', 1);
 
 -- --------------------------------------------------------
 

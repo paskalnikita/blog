@@ -1,8 +1,8 @@
 <?php
 	include 'core/init.php';
-	$title ="About page";
+	$title ="Developer page";
 	include 'includes/overall/header.php';?>
-	<h1>About</h1> 
+	<h1>Contact us</h1> 
 	<p>
 		For more information use our developer page.
 	</p>

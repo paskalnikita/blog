@@ -59,13 +59,13 @@
 				);
 			register_user($register_data);
 			$reg_email = $_POST['email'];
-			$reg_email = preg_replace('~.+@(.+)~', '<a href="http://www.$1">email adress</a>', $reg_email);
+			$reg_email = preg_replace('~.+@(.+)~', '<a href="https://www.$1">email adress</a>', $reg_email);
 			echo "<div class='success-registration'>";
-			echo "You created your account! Check your $reg_email for logining in!";// выводим ссылку на email
+				echo "You created your account! Check your $reg_email for logining in!";// выводим ссылку на email
 			echo "</div>";
 		} else if(empty($errors) === false){
 			echo "<div class='errors-output'>";
-			echo output_errors($errors);
+				echo output_errors($errors);
 			echo "</div>";
 		}
 ?>

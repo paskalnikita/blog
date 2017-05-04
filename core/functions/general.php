@@ -48,6 +48,7 @@
 	function upload_gallery_image($user_id, $description, $file_temp, $file_extn){
 		global $user_data;
 		$user_id = $user_data['user_id'];
+		$username_gallery=$user_data['username'];
 		$file_path = "Z:/home/paskalnikita.com/www/images/gallery/";
 		$_ = scandir($file_path);
 		$file_path.= time().$user_id.".jpg";
@@ -250,10 +251,12 @@ function delete_all_pic_info($pic_id){
 						$file_name = $_FILES['picture']['name'];
 						$file_extn = strtolower(end(explode('.', $file_name)));
 						$file_temp = $_FILES['picture']['tmp_name'];
+						global $user_data;
+						$username_gallery=$user_data['username'];
 						if(in_array($file_extn, $allowed) === true){
 							$description = $_POST['description'];
 							upload_gallery_image($session_user_id,$description,$file_temp,$file_extn);
-							echo '<div class="success-output" style="float:left;width:240px;">You uploaded photo!</div>';
+							header("Location: /gallery/$username_gallery");
 						}else{
 							echo "<div class='img-file-error'>Incorrect file type!<br>
 								Allowed types: ";
@@ -412,9 +415,10 @@ function delete_all_pic_info($pic_id){
 	}
 
 //добавление коментария к фото в галлереи
-	function add_pic_comment($pic_id,$user_id,$comment){
+	function add_pic_comment($pic_id,$user_id,$comment,$time){
 		$date = date("d M Y");
-		$query = mysql_query("INSERT INTO `gallery_comments` (`pic_id`,`user_id`,`comment`,`date`) VALUES ('$pic_id','$user_id','$comment','$date')") or die(mysql_error());
+		$time = date("H:i:s");
+		$query = mysql_query("INSERT INTO `gallery_comments` (`pic_id`,`user_id`,`comment`,`date`,`time`) VALUES ('$pic_id','$user_id','$comment','$date','$time')") or die(mysql_error());
 	}
 
 //показать все коментарии к выбранной картинке
@@ -440,22 +444,29 @@ function delete_all_pic_info($pic_id){
 						echo "<a style='color:#0066CC;'href='/user/$username'> $username's profile</a>";
 					echo "</div>";
 						$date=$pic_commnets['date'];
-					echo "<font size='-1'>Date:".$date."</font>";
+						$time=$pic_commnets['time'];
+					echo "<font size='-1' title='Time:".$time."'>Date:".$date."</font>";
 			echo "</div>";
 		}
 	}
 
 // вывести кнопки в боковом меню если администратор
 	function show_admin_menu(){?>
-		<li class='user-menu'>
-			<a href="/mail">Mail users</a>
-		</li>
-		<li class='user-menu'>
-			<a href="/addnews">Add news</a>
-		</li>
-		<li class='user-menu'>
-			<a href="/admin">Admin page</a>
-		</li>
+		<a href="/mail" class='white-link'>
+			<li class='user-menu'>
+				Mail users
+			</li>
+		</a>
+		<a href="/addnews" class='white-link'>
+			<li class='user-menu'>
+				Add news
+			</li>
+		</a>
+		<a href="/admin" class='white-link'>
+			<li class='user-menu'>
+				Admin page
+			</li>
+		</a>
 
 <?php
 }
@@ -463,12 +474,12 @@ function delete_all_pic_info($pic_id){
 	function show_profile_info($profile_data){
 		if(!empty($profile_data['first_name'])){?>
 				<div class="user-info">First name:<?php echo $profile_data['first_name'];?>.</div>
-	<?php 				}
+	<?php				}
 		if(!empty($profile_data['last_name'])){?>
 				<div class="user-info">Last name: <font color='#0066FF' size="+1"><?php echo $profile_data['last_name'];?>.</font></div>
 	<?php 					}
 		if(!empty($profile_data['birth_day'])){?>
-				<div class="user-info">Birth day:
+				<div class="user-info">Birthday:
 					<font color='#0066FF' size="+1">
 						<?php echo $profile_data['birth_day'];?>.<?php echo $profile_data['birth_month'];?>.<?php echo $profile_data['birth_year'];?>
 					</font>
@@ -478,7 +489,9 @@ function delete_all_pic_info($pic_id){
 				<div class="user-info">Gender: <font color='#003366' size="+1"><?php echo $profile_data['gender'];?>.</font></div>
 		<?php }
 			if(!empty($profile_data['country'])){?>
-				<div class="user-info"><div style="float:left;">Country: </div> <font color='#0033FF' size="+1"><?php echo ip_name($profile_data['ip'])."<div style='" . ip_img_style($profile_data['ip']) . "'></div>";?>.</font></div>
+				<div class="user-info"><div style="float:left;">Country: </div> <font color='#0033FF' size="+1">
+				<?php echo $profile_data['country'];?>
+				.</font></div>
 		<?php }
 		if(!empty($profile_data['state'])){?>
 				<div class="user-info">State: <font color='#3300FF' size="+1"><?php echo $profile_data['state'];?>.</font></div>
@@ -515,7 +528,9 @@ function delete_all_pic_info($pic_id){
 					}
 					$time=$posts['time'];
 				echo "<div title='Time: $time'>";
-					echo $posts['date'];
+					echo "<font size='-1'>";
+						echo "Date:".$posts['date'];
+					echo "</font>";
 				echo "</div>";
 			echo "</div>";
 		}
@@ -557,4 +572,44 @@ function delete_all_pic_info($pic_id){
 				echo '<div class="errors-output" style="width: 305px;margin-bottom: 2px;margin-left: 3px;">You can\'t delete this post!</div>';
 			}
 	}
+
+//
+
+
+	function search_users($serch_query){
+			$search = mysql_real_escape_string($_REQUEST['search']);
+				$query = mysql_query("SELECT * FROM users WHERE username LIKE '%".$search."%'");
+				if(mysql_num_rows($query)>0){
+					$user_data = mysql_fetch_assoc($query);
+					while($user_data = mysql_fetch_assoc($query)){?>
+						<div class="users-list">
+							<img style='float:left;margin:5px 5px;' src="<?php echo $user_data['profile'];?>" class='round' height='50px' alt="<?php echo $user_data['username'];?>'s photo">
+								<li>
+									First name: <?php echo $user_data['first_name'];?>.
+								</li>
+								<li>
+									First name: <?php echo $user_data['last_name'];?>.
+								</li>
+									<li>
+										<a href="/user/<?php echo $user_data['username']; ?>"><?php echo $user_data['username']; ?>'s profile</a>
+									</li>
+						</div>
+					<?php
+					}
+						echo "<a href='/users'>Show all users list</a>";
+				}
+				if(mysql_num_rows($query)==0){
+					echo "<br><br><h2> Cant find this user!</h2>";
+					echo " <a href='/users'>Show all users list</a>";
+				}
+	}
+
+
+
+
+
+
+
+
+
 ?>

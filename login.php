@@ -6,7 +6,7 @@
 	if(empty($_POST) === false){
 		$username = $_POST['username'];
 		$password = $_POST['password'];
-		if(empty($username) === true || empty($password)){
+		if(empty($username) === true || empty($password) === true){
 			$errors[] = 'Write a password and username';
 		}else if(user_exists($username) === false){
 			$errors[] = 'Cant find username';
