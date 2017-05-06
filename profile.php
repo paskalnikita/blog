@@ -75,7 +75,7 @@
 											$already_friends =  mysql_query("SELECT * FROM `friends` WHERE (`user_one`='$my_id' AND `user_two`='$user_two' AND `type`='1') OR (`user_one`='$user_two' AND `user_two`='$my_id' AND `type`='1')") or die(mysql_error());//я отправил запрос на добавление в друзья
 											$we_are_friends= mysql_fetch_assoc($already_friends);
 											if($we_are_friends){?>
-											<div class="already-friends-block">
+												<div class="already-friends-block">
 													Friends
 												</div>
 <?php
@@ -83,7 +83,6 @@
 										$friend_request_from_user = mysql_query("SELECT * FROM `friends` WHERE `user_two`='$profile_id' AND `user_one`='$my_id' AND `type`='2'") or die(mysql_error());
 										$sended_request= mysql_fetch_assoc($friend_request_from_user);
 										$request_from_this_user=$sended_request['user_one'];
-								
 											if(!empty($request_from_this_user)){?>
 													Friend request from this user!
 												<br><br>
@@ -101,6 +100,7 @@
 								}
 									echo '<img src="/', $profile_data['profile'], '" width="250px"  style="margin-top:-22px;"class="round" alt=" ',$profile_data['first_name'], '\'s profile image">';
 								}else{
+
 									echo '<img src="/', $profile_data['profile'], '" width="250px" class="round" alt=" ',$profile_data['first_name'], '\'s profile image">';
 									}
 							}else{
@@ -114,13 +114,21 @@
 										Photos
 									</div>
 								</a>
+								<?php if($profile_data['user_id'] === $user_data['user_id']){?>
+									<a href="/message">
+										<div class='green-button' style="float:right;margin-left:5px;">
+											Messages
+										</div>
+									</a>
+<?php					}else{				?>
 								<a href="/message?to=<?php echo $profile_data['user_id'];?>">
 									<div class='green-button' style="float:right;margin-left:5px;">
 										Message
 									</div>
 								</a>
-							</div>
 <?php					}
+					echo "</div>";
+								}
 						if(!logged_in()){?>
 							<div>
 								<div class='not-loggedin-info'>
