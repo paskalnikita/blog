@@ -2,7 +2,7 @@
 	include 'core/init.php';
 	$title ="Gallery";
 	include 'includes/overall/header.php';?>
-	<h1>Gallery</h1>
+	<h1>Users gallery</h1>
 	<div id="content">
 <?php
 		if(!isset($_GET['pic']) && !isset($_GET['username'])){

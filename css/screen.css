@@ -31,6 +31,9 @@ a:hover {
 a:active{
 	outline: none;
 }
+.page-link{
+	text-decoration:none;
+}
 .delete-post-part{
 	float:right;
 	margin-right: -1px;

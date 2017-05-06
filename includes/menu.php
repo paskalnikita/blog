@@ -14,6 +14,6 @@
 	<div class="right-logo"><i>
 		<!-- <img src="images/top.png" alt="" width='200px'> Travaster.com -->
 	</i></div>
-	<img src="/images/logg.png" alt=""width='200px' style="margin-bottom:-20px;margin-top:-35px;">
+	<img src="/images/logg.png" alt="" width='200px' style="margin-bottom:-20px;margin-top:-35px;">
 	<b><i style='color:#FF4040;margin-left: 35px;'>Alpha</i></b>
 </div>

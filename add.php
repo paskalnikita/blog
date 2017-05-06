@@ -1,10 +1,10 @@
 <?php
 	include 'core/init.php';
-	$title ="Advertising page";
+	$title ="Advertising";
 	include 'includes/overall/header.php';?>
-	<h1>Contact us</h1> 
+	<h1>Advertising</h1> 
 	<p>
-		For more information use our developer page.
+		Advertising page
 	</p>
 <?php
 include'includes/overall/footer.php';

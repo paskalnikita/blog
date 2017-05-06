@@ -286,7 +286,7 @@ function delete_all_pic_info($pic_id){
 
 //вывод новостей на главную старницу
 	function show_news($page){
-		$num = 5;//количетсво записей на странице
+		$num = 1;//количетсво записей на странице
 		$result = mysql_query("SELECT * FROM news ORDER BY id DESC") or die(mysql_error());
 		$temp = mysql_fetch_array($result);
 		$posts = $temp[0];
@@ -327,27 +327,46 @@ function delete_all_pic_info($pic_id){
 				<p align='right'>Added:<Font color='#0000CC'><?php  echo $news["date"];?></font></p>
 			</div>
 	<?php
-		}
-		while($news = mysql_fetch_array($get_news));?>
+		}while($news = mysql_fetch_array($get_news));?>
 		</div>
 		<div class="pagination">
 	<?php
 		// проверяем, нужно ли кнопки 'назад'
-			if($page != 1) $firstpage = '<a href=?page=1>«</a> | <a href=?page='. ($page - 1).'>Пред.</a> | ';
-			if($page != $total) $nextpage = ' | <a href=?page='. ($page + 1) .'>След.</a> | <a href=?page=' .$total. '>»</a>';
-			if($page - 3 > 0) $page3left = ' <a href=?page='. ($page - 3) .'>'. ($page - 3) .'</a> | ';
-			if($page - 2 > 0) $page2left = ' <a href=?page='. ($page - 2) .'>'. ($page - 2) .'</a> | ';
-			if($page - 1 > 0) $page1left = '<a href=?page='. ($page - 1) .'>'. ($page - 1) .'</a> | ';
+			if($page != 1) $firstpage = '<a class="page-link" href=/index/page/1>«</a> | <a class="page-link" href=/index/page/'. ($page - 1).'> < </a> | ';
+			if($page != $total) $nextpage = ' | <a class="page-link" href=/index/page/'. ($page + 1) .'> > </a> | <a class="page-link" href=/index/page/' .$total. '>»</a>';
+			if($page - 2 > 0) $page2left = ' <a class="page-link" href=/index/page/'. ($page - 2) .'>'. ($page - 2) .'</a> | ';
+			if($page - 3 > 0) $page3left = ' <a class="page-link" href=/index/page/'. ($page - 3) .'>'. ($page - 3) .'</a> | ';
+			if($page - 1 > 0) $page1left = '<a class="page-link" href=/index/page/'. ($page - 1) .'>'. ($page - 1) .'</a> | ';
 		// проверяем, нужно ли кнопки 'вперед'
-			if($page + 3 <= $total) $page3right = ' | <a href=?page='. ($page + 3) .'>'. ($page + 3) .'</a>';
-			if($page + 2 <= $total) $page2right = ' | <a href=?page='. ($page + 2) .'>'. ($page + 2) .'</a>';
-			if($page + 1 <= $total) $page1right = ' | <a href=?page='. ($page + 1) .'>'. ($page + 1) .'</a>';
+			if($page + 3 <= $total) $page3right = ' | <a class="page-link" href=/index/page/'. ($page + 3) .'>'. ($page + 3) .'</a>';
+			if($page + 1 <= $total) $page1right = ' | <a class="page-link" href=/index/page/'. ($page + 1) .'>'. ($page + 1) .'</a>';
+			if($page + 2 <= $total) $page2right = ' | <a class="page-link" href=/index/page/'. ($page + 2) .'>'. ($page + 2) .'</a>';
 			if($total > 1){
-				Error_Reporting(E_ALL & ~E_NOTICE);
-				$current_page = "<a href=?page=$page class='selected-page'>".$page."</a>";
+				$current_page = "<a href=index/page/$page class='selected-page'>".$page."</a>";
 				//оборажение кол-ва страниц и текущей
 				echo $firstpage.$page3left.$page2left.$page1left.'<b>'.$current_page.'</b>'.$page1right.$page2right.$page3right.$nextpage;
 			}
+	}
+//индивудальные новости дл пользователя
+	function show_user_news($page,$user_id){
+			$query=mysql_query("SELECT * FROM `friends` WHERE `user_one`='$user_id' OR `user_two`='$user_id' AND `type`=1") or die(mysql_error());
+			$list_of_frinds_ids=array();
+			while($my_news=mysql_fetch_assoc($query)){
+				if($my_news['user_one']===$user_id){
+					array_push($list_of_frinds_ids, $my_news['user_two']);
+					$friend_username=username_from_id($my_news['user_two']);
+					echo $friend_username.":<br>";
+				}if($my_news['user_one']!=$user_id){
+					array_push($list_of_frinds_ids, $my_news['user_one']);
+					$friend_username=username_from_id($my_news['user_one']);
+					echo $friend_username.":<br>";
+				}
+			}
+
+			//вывод списка id пользователей которые мои друзья
+			// for($i=0; $i <sizeof($list_of_frinds_ids); $i++) { 
+			// 	echo $list_of_frinds_ids[$i].'<br>';
+			// }
 	}
 // записываем пост пользователя в БД
 	function add_post($post,$profile_username){
