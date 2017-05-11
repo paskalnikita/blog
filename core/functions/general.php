@@ -350,7 +350,7 @@ function delete_all_pic_info($pic_id){
 
 //индивудальные новости для пользователя
 	function show_personal_news($page,$user_id){
-			$query=mysql_query("SELECT * FROM `friends` WHERE `user_one`='$user_id' OR `user_two`='$user_id' AND `type`=1") or die(mysql_error());
+			$query=mysql_query("SELECT * FROM `friends` WHERE (`user_one`='$user_id' AND `type`=1) OR (`user_two`='$user_id' AND `type`=1) ") or die(mysql_error());
 			$list_of_frinds_ids=array();
 			while($my_news=mysql_fetch_assoc($query)){
 				if($my_news['user_one']===$user_id){
@@ -363,21 +363,24 @@ function delete_all_pic_info($pic_id){
 					//echo $friend_username.":<br>";
 				}
 			}
-			$userd_ids=implode(',', $list_of_frinds_ids);
-			$query = mysql_query("SELECT * FROM blogs WHERE user_id IN ($userd_ids) ORDER BY id DESC") or die(mysql_error());
-			while($personal_news = mysql_fetch_assoc($query)){
-					echo "<div class='personal-news'>";
-				echo $personal_news['post'];
-				echo "<br>";
-			
-					echo "<div style='float:right;'>";
-						$username=username_from_id($personal_news['user_id']);
-						echo "<a style='text-decoration:none;color:#0066CC;'href='/user/$username'> $username's profile</a>";
-					echo "</div>";
-						$date=$personal_news['date'];
-						$time=$personal_news['time'];
-					echo "<font size='-1' title='Time:".$time."' style='cursor:help;'>Date:".$date."</font>";
-			echo "</div>";
+			if(!empty($list_of_frinds_ids)){//если есть друзья показать посты друзей в ленте
+				$userd_ids=implode(',', $list_of_frinds_ids);
+				$query = mysql_query("SELECT * FROM blogs WHERE user_id IN ($userd_ids) ORDER BY id DESC") or die(mysql_error());
+				while($personal_news = mysql_fetch_assoc($query)){
+						echo "<div class='personal-news'>";
+					echo $personal_news['post'];
+					echo "<br>";
+						echo "<div style='float:right;'>";
+							$username=username_from_id($personal_news['user_id']);
+							echo "<a style='text-decoration:none;color:#0066CC;'href='/user/$username'> $username's profile</a>";
+						echo "</div>";
+							$date=$personal_news['date'];
+							$time=$personal_news['time'];
+						echo "<font size='-1' title='Time:".$time."' style='cursor:help;'>Date:".$date."</font>";
+				echo "</div>";
+				}
+			}else{
+				echo "Nothing to show <br> recomendations for subscribe";
 			}
 			
 	}
@@ -636,12 +639,55 @@ function delete_all_pic_info($pic_id){
 				}
 	}
 
+//показываю сообщения с собеседником, собеседник - это $username
 
-
-
-
-
-
-
+function show_dialog_with($username,$from,$to,$my_id){//from - от кого; $to - кому; $username - никнейм пользователя которому пишу; $my_id -мой id
+		if(!empty($username)){
+			$select_messages=mysql_query("SELECT COUNT(id) AS count FROM `messages` WHERE (`to`=$to and `from` = $my_id) OR (`from`=$to and `to` = $my_id)");
+			$calc_messages = mysql_fetch_assoc($select_messages);
+			echo "<div style='float:right;'>";
+				echo "Total messages:";
+				echo $calc_messages['count']; //вывод кол-ва сообщений
+			echo "</div>";
+			echo "Dialog with <a href='user/$username'>$username</a>:";// показываем с кем диалог
+			$query = mysql_query("SELECT * FROM `messages` WHERE `from` = $from AND `to` = $to OR `from` = $to AND `to` = $from ORDER BY `id` DESC") or die(mysql_error());
+			$messages = mysql_fetch_array($query);
+			$read_message = mysql_query("UPDATE `messages` SET `unread`='0' WHERE `to`='$from' and `from` = '$to'") or die(mysql_error());//`прочитываем` сообщение
+			?>
+			<div class="messages-box">
+<?php
+				if(!empty($messages)){// выодим сообщения
+					do{
+						$from_username_id = $messages['from'];
+						$from_username = username_from_id($from_username_id);// получаем никнейм из id
+						echo "<div class='message'>";
+							echo "<div class='right'>";
+								echo $messages['date'];
+							echo '</div>';
+						echo "<a href='user/$from_username'>";// сслыка на собеседника
+							echo $from_username;// сслыка на собеседника
+						echo '</a>:<br>';// сслыка на собеседника
+						echo $messages['message'];
+							echo "<div class='right'>";
+								echo $messages['time'];
+							echo "</div>";
+						echo "</div>";
+					}while($messages = mysql_fetch_array($query));
+				}else{
+						echo "Dialog is empty!";// если нет ообщений
+					}?>
+			</div>
+				<form action="" method="POST"> <!-- форма для отправки сообщений-->
+					<div align='center'>
+						<textarea spellcheck="false" name="message" id="" cols="45" rows="7"></textarea>
+					</div>
+					<input type="hidden" name="to" value="<? echo $_GET['to'];?>"><!-- опрделяеям, кому отправляем сообщение-->
+					<input type="Submit" name="send_message" value="Send">
+				</form>
+<?php
+		}else{
+				echo 'This user does not exists!';// если id обеседника непрвильный
+			}
+}
 
 ?>

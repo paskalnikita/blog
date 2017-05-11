@@ -11,6 +11,18 @@
 	}else{
 		$title ="Messages";
 	}
+	/////////////////////////////////////////////////////////////
+	// $from = $user_data['user_id'];// от кого - от меня
+	// if(isset($GET['to'])){
+	// 	$to = $_GET['to'];// кому - собеседнику
+	// $query = mysql_query("SELECT * FROM `messages` WHERE `from` = $from AND `to` = $to OR `from` = $to AND `to` = $from ORDER BY `id` DESC") or die(mysql_error());
+	// $messages = mysql_fetch_array($query);
+	// $read_message = mysql_query("UPDATE `messages` SET `unread`='0' WHERE `to`='$from' and `from` = '$to'") or die(mysql_error());//`прочитываем` сообщение
+	// echo "READ";
+	// }else{
+	// 	echo "Foo";
+	// }
+	/////////////////////////////////////////////////////////////
 	include 'includes/overall/header.php';?>
 <h1>Sending messages</h1>
 <div id="content">
@@ -62,54 +74,10 @@
 		}
 	}
 	if(!empty($_GET['to'])){// если выбрали собеседника
-		if(!empty($username)){
 			$from = $user_data['user_id'];// от кого - от меня
 			$to = $_GET['to'];// кому - собеседнику
-			$select_messages=mysql_query("SELECT COUNT(id) AS count FROM `messages` WHERE (`to`=$to and `from` = $my_id) OR (`from`=$to and `to` = $my_id)");
-			$calc_messages = mysql_fetch_assoc($select_messages);
-			echo "<div style='float:right;'>";
-				echo "Total messages:";
-				echo $calc_messages['count']; //вывод кол-ва сообщений
-			echo "</div>";
-			echo "Dialog with <a href='user/$username'>$username</a>:";// показываем с кем диалог
-			$query = mysql_query("SELECT * FROM `messages` WHERE `from` = $from AND `to` = $to OR `from` = $to AND `to` = $from ORDER BY `id` DESC") or die(mysql_error());
-			$messages = mysql_fetch_array($query);
-			$read_message = mysql_query("UPDATE `messages` SET `unread`='0' WHERE `to`='$from' and `from` = '$to'") or die(mysql_error());//`прочитываем` сообщение
-			?>
-			<div class="messages-box">
-<?php
-				if(!empty($messages)){// выодим сообщения
-					do{
-						$from_username_id = $messages['from'];
-						$from_username = username_from_id($from_username_id);// получаем никнейм из id
-						echo "<div class='message'>";
-							echo "<div class='right'>";
-								echo $messages['date'];
-							echo '</div>';
-						echo "<a href='user/$from_username'>";// сслыка на собеседника
-							echo $from_username;// сслыка на собеседника
-						echo '</a>:<br>';// сслыка на собеседника
-						echo $messages['message'];
-							echo "<div class='right'>";
-								echo $messages['time'];
-							echo "</div>";
-						echo "</div>";
-					}while($messages = mysql_fetch_array($query));
-				}else{
-						echo "Dialog is empty!";// если нет ообщений
-					}?>
-			</div>
-				<form action="" method="POST"> <!-- форма для отправки сообщений-->
-					<div align='center'>
-						<textarea spellcheck="false" name="message" id="" cols="45" rows="7"></textarea>
-					</div>
-					<input type="hidden" name="to" value="<? echo $_GET['to'];?>"><!-- опрделяеям, кому отправляем сообщение-->
-					<input type="Submit" name="send_message" value="Send">
-				</form>
-<?php
-		}else{
-				echo 'This user does not exists!';// если id обеседника непрвильный
-			}
+			//показывем сообщения с данным пользователем
+			show_dialog_with($username,$from,$to,$my_id);
 	}
 	echo '</div>';
 include'includes/overall/footer.php';?>

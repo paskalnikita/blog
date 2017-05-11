@@ -5,8 +5,12 @@
 	<h1>Your personal news</h1>
 	<div id="content">
 		<?php
-			$user_id=$user_data['user_id'];
-			show_user_news($page,$user_id);
+			if (logged_in()) {
+				$user_id=$user_data['user_id'];
+				show_personal_news($page,$user_id);
+			}else{
+				echo "Log in first";
+			}
 ?>
 	</div>
 <?php
