@@ -347,26 +347,39 @@ function delete_all_pic_info($pic_id){
 				echo $firstpage.$page3left.$page2left.$page1left.'<b>'.$current_page.'</b>'.$page1right.$page2right.$page3right.$nextpage;
 			}
 	}
-//индивудальные новости дл пользователя
-	function show_user_news($page,$user_id){
+
+//индивудальные новости для пользователя
+	function show_personal_news($page,$user_id){
 			$query=mysql_query("SELECT * FROM `friends` WHERE `user_one`='$user_id' OR `user_two`='$user_id' AND `type`=1") or die(mysql_error());
 			$list_of_frinds_ids=array();
 			while($my_news=mysql_fetch_assoc($query)){
 				if($my_news['user_one']===$user_id){
 					array_push($list_of_frinds_ids, $my_news['user_two']);
 					$friend_username=username_from_id($my_news['user_two']);
-					echo $friend_username.":<br>";
+					//echo $friend_username.":<br>";
 				}if($my_news['user_one']!=$user_id){
 					array_push($list_of_frinds_ids, $my_news['user_one']);
 					$friend_username=username_from_id($my_news['user_one']);
-					echo $friend_username.":<br>";
+					//echo $friend_username.":<br>";
 				}
 			}
-
-			//вывод списка id пользователей которые мои друзья
-			// for($i=0; $i <sizeof($list_of_frinds_ids); $i++) { 
-			// 	echo $list_of_frinds_ids[$i].'<br>';
-			// }
+			$userd_ids=implode(',', $list_of_frinds_ids);
+			$query = mysql_query("SELECT * FROM blogs WHERE user_id IN ($userd_ids) ORDER BY id DESC") or die(mysql_error());
+			while($personal_news = mysql_fetch_assoc($query)){
+					echo "<div class='personal-news'>";
+				echo $personal_news['post'];
+				echo "<br>";
+			
+					echo "<div style='float:right;'>";
+						$username=username_from_id($personal_news['user_id']);
+						echo "<a style='text-decoration:none;color:#0066CC;'href='/user/$username'> $username's profile</a>";
+					echo "</div>";
+						$date=$personal_news['date'];
+						$time=$personal_news['time'];
+					echo "<font size='-1' title='Time:".$time."' style='cursor:help;'>Date:".$date."</font>";
+			echo "</div>";
+			}
+			
 	}
 // записываем пост пользователя в БД
 	function add_post($post,$profile_username){

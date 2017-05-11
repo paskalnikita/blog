@@ -703,6 +703,15 @@ footer {
 	margin: 2px;
 	word-wrap:break-word;
 }
+.personal-news{
+	float:left;
+	width:630px;
+	background: rgb(64,199,129);
+	border-radius: 3px;
+	padding: 3px;
+	margin: 2px;
+	word-wrap:break-word;
+}
 .calc-comments{
 	float: right;
 	height: 20px;
