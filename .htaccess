@@ -5,35 +5,7 @@ RewriteRule ^user/(.+)$ /profile.php?username=$1 [L]
 RewriteRule ^gallery\/pic\/([0-9]+)\/?$ /gallery.php?pic=$1 [L]
 RewriteRule ^gallery/(.+)$ /gallery.php?username=$1 [L]
 RewriteRule ^post\/id\/([0-9]+)\/?$ /post?id=$1 [L]
-
-
-
-
-
-
-
-
-
 RewriteRule ^index\/page\/([0-9]+)\/?$ /index?page=$1 [L]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ $1.php
