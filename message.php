@@ -11,18 +11,6 @@
 	}else{
 		$title ="Messages";
 	}
-	/////////////////////////////////////////////////////////////
-	// $from = $user_data['user_id'];// от кого - от меня
-	// if(isset($GET['to'])){
-	// 	$to = $_GET['to'];// кому - собеседнику
-	// $query = mysql_query("SELECT * FROM `messages` WHERE `from` = $from AND `to` = $to OR `from` = $to AND `to` = $from ORDER BY `id` DESC") or die(mysql_error());
-	// $messages = mysql_fetch_array($query);
-	// $read_message = mysql_query("UPDATE `messages` SET `unread`='0' WHERE `to`='$from' and `from` = '$to'") or die(mysql_error());//`прочитываем` сообщение
-	// echo "READ";
-	// }else{
-	// 	echo "Foo";
-	// }
-	/////////////////////////////////////////////////////////////
 	include 'includes/overall/header.php';?>
 <h1>Sending messages</h1>
 <div id="content">
@@ -45,7 +33,7 @@
 		sort($users_id);// сортируем по id пользователя
 		for($i=0; $i<count($users_id); $i++){?>
 			<div class='message' style="padding:5px;">
-				<a href='?to=<?php echo $users_id[$i];?>' style='text-decoration:none;'>
+				<a href='/message/to/<?php echo $users_id[$i];?>' style='text-decoration:none;'>
 					Dialog with <?php echo username_from_id($users_id[$i]);?>
 				</a>
 <?php
