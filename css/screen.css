@@ -296,6 +296,7 @@ textarea {
 
 .round{
 	border-radius: 5px;
+    display: inline-block;
 }
 
 select{
@@ -1033,19 +1034,15 @@ width:1.1em}
 	color:white;
 	text-decoration: none;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
+#personal-pics{
+    float: left;
+    width: 640px;
+    /*background-color: blue;*/
+    height: 125px;        
+    overflow: hidden;
+    overflow-x: scroll;    
+    white-space:nowrap;
+}
 
 /*::-webkit-input-placeholder {color:#c0392b;}*/
 /*::-moz-placeholder          {color:#c0392b;}/* Firefox 19+ */*/

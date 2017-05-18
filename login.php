@@ -3,13 +3,20 @@
 	$title = "Log In";
 	logged_in_redirect();// только для НЕавторизированных пользователей
 	include 'includes/overall/header.php';
-	if(empty($_POST) === false){
-		$username = $_POST['username'];
+	if(!empty($_POST)){
+		if(stristr($_POST['username'], '@')){//проверка введен ли email или никней пользователя
+			$email=$_POST['username'];
+			$username=username_from_email($email);
+		}else{
+				$username = $_POST['username'];
+			}
 		$password = $_POST['password'];
-		if(empty($username) === true || empty($password) === true){
+		if(empty($username) && empty($password)){
 			$errors[] = 'Write a password and username';
+		}else if($username==false){
+			$errors[] = 'Can\'t find email adres';
 		}else if(user_exists($username) === false){
-			$errors[] = 'Cant find username';
+			$errors[] = 'Can\'t find username';
 		}else if(user_active($username) === false){
 			$errors[] = 'You didn\'t activate your account!';
 		}else{

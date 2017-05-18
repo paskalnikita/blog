@@ -83,10 +83,12 @@
 		mysql_query("INSERT INTO `users` ($fields) VALUES ($data)") or die(mysql_error());
 		email($register_data['email'], 'Activate your account',"Hello " .$register_data ['first_name'].",\n\nYou need to activate your account, use the link below : \n\nhttp://paskalnikita.com/activate?email=".$register_data['email']."&email_code=".$register_data['email_code']."\n\n -Travaster.com");
 	}
+
 // подсчет зарегистирированных пользователей, активировавших аккаунт
 	function user_count(){
 		return mysql_result(mysql_query("SELECT COUNT(`user_id`) FROM `users` WHERE `active` = 1"), 0);
 	}
+
 // получение массива с информацией о пользователе
 	function user_data($user_id){
 		$data = array();
@@ -101,10 +103,12 @@
 			return $data;
 		}
 	}
+
 //функция запонить меня(куки)
 	function user_remember( $id, $token ){
 			mysql_query("UPDATE `users` SET `remember_token` = '$token' WHERE `user_id` = '$id'");
 	}
+
 // проверка на залогиненость пользователя
 	function logged_in(){
 		if(isset($_SESSION['user_id'])){
@@ -117,6 +121,12 @@
 		return true;
 	}
 	return false;
+}
+
+// проверка на то посещаю и я сайт первый раз
+function first_log_in($user_id){
+	$result = mysql_result(mysql_query("SELECT `first_log_in` FROM `users` WHERE `user_id` = '$user_id'"), 0);
+		return $result;
 }
 
 //делаем пользователя онлайн
@@ -148,7 +158,6 @@
 			}
 		}
 
-
 // проверка на существование записи в БД на никнейм пользователя
 	function user_exists($username){
 		$username = sanitize($username);
@@ -179,6 +188,12 @@ function username_from_id($user_id){
 	$user_id = sanitize($user_id);
 	return mysql_result(mysql_query("SELECT `username` FROM `users` WHERE `user_id` = '$user_id'"), 0, 'username');
 }
+
+// получение никнейма пользователя из его email
+function username_from_email($email){
+	return mysql_result(mysql_query("SELECT `username` FROM `users` WHERE `email` = '$email'"), 0, 'username');
+}
+
 // залогиневание пользователя
 function login($username, $password){
 	$user_id = user_id_from_username($username);
