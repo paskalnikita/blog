@@ -7,8 +7,8 @@
 		<form action="" method="post">
 			<input type="text" class='submit-button' placeholder="Title" name="title">
 			<input type="text" class='submit-button' placeholder="Header" name='header'>
-			<textarea class='submit-button' name="m_desc" rows="7" cols="75" placeholder="Mini description" style='resize:vertical ;' required></textarea>
-			<textarea class='submit-button' name="desc" rows="7" cols="75" placeholder="Full description" style='resize:vertical ;' required></textarea>
+			<textarea class='submit-button' name="m_desc" rows="7" cols="75" placeholder="Mini description"  style='resize:vertical ;'required></textarea>
+			<textarea class='submit-button' name="desc" rows="7" cols="75" placeholder="Full description" style='resize:vertical ;'required></textarea>
 			<br>
 <?php
 					$date = date('Y.m.d');

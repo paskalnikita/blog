@@ -1,7 +1,7 @@
 	<aside>
 <?php
 	$DIR=$_SERVER["DOCUMENT_ROOT"];
-		if(logged_in()){
+		if(logged_in() === true){
 			include '/widgets/loggedin.php';// вывод меню для авторизированного пользователя
 		}else{
 			include '/widgets/login.php';// вывод меню для неавторизированного пользователя

@@ -11,9 +11,9 @@
 					</h2>
 						<div class="profile">
 <?php
-							if(!empty($user_data['profile'])){
-								echo '<img class="round" width="100%" src="/', $user_data['profile'], '" alt="',$user_data['first_name'],'\'s profile image">';
-							}?>
+								if(!empty($user_data['profile'])){
+									echo '<img class="round" width="100%" src="/', $user_data['profile'], '" alt="',$user_data['first_name'],'\'s profile image">';
+								}?>
 						<ul>
 							<a class='white-link' href="/user/<?php echo $user_data['username']; ?>">
 								<li class='user-menu'>

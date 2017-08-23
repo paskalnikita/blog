@@ -8,4 +8,3 @@
 <?php include "$DIR/includes/header.php";?>
 	<div id="container">
 <?php include "$DIR/includes/aside.php";?>
-

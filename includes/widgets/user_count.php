@@ -4,7 +4,7 @@
 <?php 
 							$user_count = user_count();
 							$suffix = ($user_count !=1) ? 's' : '';// выбор окончания 
-?>We already have 
+?>We have 
 <?php echo $user_count; ?> registered user<?php echo $suffix;?>!
 					</div>
 				</div>

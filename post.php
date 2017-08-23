@@ -34,11 +34,11 @@ do{?>
 							<b><?php echo $news['header'];?></b>
 						</p>
 <?php
-				// разрешиь редактирование статьи если администратор
-					if(is_admin($user_data['user_id'])){?>
-						<div title='Edit' style='float: right;cursor:pointer;font-size:25pt;margin-top: -53px;color:#C400AB;'>
-							&#9997;
-						</div>
+											// разрешиь редактирование статьи если администратор
+									if(is_admin($user_data['user_id'])){?>
+										<div title='Edit' style='float: right;cursor:pointer;font-size:25pt;margin-top: -53px;color:#C400AB;'>
+											&#9997;
+										</div>
 				<?php
 									}
 			 echo $news['desc'];?>
@@ -78,12 +78,15 @@ do{?>
 						$comment_id = $_POST['post-delete'];
 						$username_name = $user_data['username'];
 						delete_comment($comment_id,$username_name);
-					}
+						}
 						$comment = trim(filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_STRING));// убираем лишние символы
+
 						if(!empty($comment)){// если комментарий не пустой
 							$username = $user_data['username'];
-							add_comment($username,$comment);
-							if(add_comment($username,$comment)){
+							$date = date('Y.m.d');
+							$time = date("H:i:s");
+							$result = mysql_query("INSERT INTO comments (comment,username,date,time,post_id) VALUES ('$comment','$username', '$date', '$time','$post_id')") or die(mysql_error());
+							if($result){
 								echo "<div class='success-output'>Your comment has been added!</div>";
 							}else{
 									echo "<div class='errors-output' style=\"width: 305px;margin-bottom: 2px;margin-left: 3px;\">Can't add a comment!</div>";
@@ -126,7 +129,11 @@ do{?>
 		"<img src='smail/dumbfounded.png' alt='Грустный' align='middle'>",// на что менять
 		"<img src='smail/crazy.png' alt='Класно' align='middle'>",// на что менять
 		"<img src='smail/evil.png' alt='Недоволен' align='middle'>");// на что менять
-	while($myrow = mysql_fetch_array($result)):?>
+	while($myrow = mysql_fetch_array($result)):
+		$myrow["comment"] = preg_replace('~(@([^\s]+)\b)~', '<a href="/user/$2">$1</a>', $myrow["comment"]);// создание ссылки, если есть запись вида @username
+		$myrow["comment"] = preg_replace(';(?:[a-z]+://)?(?:www\.)?((?>[a-z,_,-]+\.)++[a-z,/,?,=,&,-,_,0,1,2,3,4,5,6,7,8,9,.]++)/?;iS', '<a href="http://www.$1" target="blank">$1</a>', $myrow["comment"]);// формирование ссылок
+		$myrow["comment"] = str_replace($smile, $grafic, $myrow["comment"]);
+?>
 	<div class="comment">
 <?php
 					if(!empty($user_data['username'])){// если авторизирован
@@ -139,9 +146,10 @@ do{?>
 							</div>
 <?php					}
 					}
-			echo make_links(make_tags($myrow["comment"]));?>
+		echo $myrow["comment"];?>
 		<br>
-			<font size='-1' title="Time:<?php echo $myrow['time'];?>" style='cursor:help;'>Date:<?php echo $myrow['date'];?></font>
+		Date :<?php echo $myrow['date'];?>
+		Time:<font size="-1"><?php echo $myrow['time'];?></font>
 			<div style='float:right;'>
 				<a style="color:#0066CC;" href="/user/<?php echo $myrow['username']; ?>"> <?php echo $myrow['username'];?>'s profile</a>
 				<?php

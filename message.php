@@ -1,6 +1,6 @@
 <?php
 	include 'core/init.php';
-	protect_page();// только для авторизированных пользователей
+	protect_page();// тоько для авторизированных пользователей
 	if(!empty($_GET['to'])){
 		$to_user = $_GET['to'];
 		$temp = mysql_query("SELECT COUNT(*) FROM `users` WHERE `user_id` = '$to_user'");
@@ -10,12 +10,6 @@
 		$title ="Dialog with $username";// показываем с кем диалог
 	}else{
 		$title ="Messages";
-	}
-	if(!empty($_GET['to'])){// если выбрали собеседника
-			$from = $user_data['user_id'];// от кого - от меня
-			$to = $_GET['to'];// кому - собеседнику
-			//прочитываем сообщение
-			read_messages($from,$to);
 	}
 	include 'includes/overall/header.php';?>
 <h1>Sending messages</h1>

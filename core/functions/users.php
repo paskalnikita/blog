@@ -112,7 +112,7 @@
 // проверка на залогиненость пользователя
 	function logged_in(){
 		if(isset($_SESSION['user_id'])){
-			return true;
+				return true;
 		}
 	if(isset($_COOKIE['authtoken'])){
 		$token = sanitize($_COOKIE['authtoken']);
@@ -123,7 +123,7 @@
 	return false;
 }
 
-// проверка на то посещаю ли я сайт первый раз
+// проверка на то посещаю и я сайт первый раз
 function first_log_in($user_id){
 	$result = mysql_result(mysql_query("SELECT `first_log_in` FROM `users` WHERE `user_id` = '$user_id'"), 0);
 		return $result;
@@ -201,11 +201,10 @@ function login($username, $password){
 	$password = md5($password);
 	return(mysql_result(mysql_query("SELECT COUNT(`user_id`) FROM `users` WHERE `username` = '$username' AND `password` = '$password'"), 0) == 1) ? $user_id : false;
 }
-// запись личного сообщения в БД
+// запись личного сообщения в БД !!!(не используется)!!!
 	function add_message($from,$to,$message){
 		$date = date('Y.m.d');
 		$time = date("H:i:s");
-		$message=sanitize($message);
 		$query = mysql_query("INSERT INTO `messages` (`to`,`from`,`message`,`date`,`time`) VALUES ('$to','$from','$message','$date','$time')") or die(mysql_error());// добавляем сообщеине в БД
 	}
 ?>

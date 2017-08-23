@@ -51,12 +51,10 @@
 			if(user_exists($username)){
 				if($_GET['username'] === $user_data['username']){?>
 						<div style='float:left; width: 615px; text-align: left;'>
-							<?php echo 'Total pics: <b>'.total_pics($user_id).'</b>.';?>
-							<a href='/addphoto'>
-								<div class='green-button' style='float: right;margin-bottom: 5px;'>
-									Add photo
-								</div>
-							</a>
+							<?php total_pics($user_id);?>
+							<div class='green-button' style='float: right;margin-bottom: 5px;' >
+								<a href='/addphoto'>Add photo</a>
+							</div>
 						</div>
 					<?php
 				}

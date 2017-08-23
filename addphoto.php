@@ -1,7 +1,6 @@
 <?php
 	include 'core/init.php';
 	$title ="Add photo";
-	protect_page();
 	include 'includes/overall/header.php';?>
 	<h1>Adding photo</h1>
 	<div id='content'>

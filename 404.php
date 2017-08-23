@@ -1,14 +1,33 @@
 <!doctype html>
 <html>
 <head>
-	<title>Travaster | Error 404</title>
+	<title>Page | Error 404</title>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="http://paskalnikita.com/css/screen.css"/>
 </head>
 <body>
 <header>
 	<br>
-</header>
+<div class="top-menu">
+	<div class="left-links">
+			<nav>
+				<ul>
+					<li><a class="top-button" href="/index">Home</a></li>
+					<li><a class="top-button" href="/news">News</a></li>
+					<li><a class="top-button" href="/gallery">Gallery</a></li>
+					<li><a class="top-button" href="/users">Users</a></li>
+					<li><a class="top-button" href="/about">About</a></li>
+					<li><a class="top-button" href="/contact">Contact us</a></li>
+				</ul>
+		</nav>
+</div>
+	<div class="right-logo">
+		<i>
+			<!-- <img src="images/top.png" alt="" width='200px'> Travaster.com -->
+		</i>
+	</div>
+	<img src="/images/logg.png" alt=""width='200px' style="margin-bottom:-20px;margin-top:-35px;">
+</div></header>
 	<div id="container">
 			<p align='center'>Sorry, can't find information which you are looking for...</p>
 				<p align='center'>

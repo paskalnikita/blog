@@ -5,7 +5,7 @@
 				About
 			</div>
 		</a>
-		<a href="/ads">
+		<a href="/add">
 			<div class='bottom-button'>
 				Аdvertising
 			</div>

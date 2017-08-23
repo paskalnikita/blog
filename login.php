@@ -15,9 +15,9 @@
 			$errors[] = 'Write a password and username';
 		}else if($username==false){
 			$errors[] = 'Can\'t find email adres';
-		}else if(!user_exists($username)){
+		}else if(user_exists($username) === false){
 			$errors[] = 'Can\'t find username';
-		}else if(!user_active($username)){
+		}else if(user_active($username) === false){
 			$errors[] = 'You didn\'t activate your account!';
 		}else{
 			if(strlen($password)>32){
@@ -41,7 +41,7 @@
 }else{
 	$errors[] = 'No data';
 	}
-	if(!empty($errors)){
+	if(empty($errors) === false){
 ?>
 	<h2>Tried to log in ,but...</h2>
 <?php
