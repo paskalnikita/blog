@@ -3,20 +3,21 @@
 	logged_in_redirect();// доступно только НЕавторизированным пользователям
 	$title = "Activating";
 	include 'includes/overall/header.php';
-	if(isset($_GET['success']) === true && empty($_GET['success']) === true){
-	}else if(isset($_GET['email'], $_GET['email_code']) === true){
+	echo "<div id='content'>";
+	if(isset($_GET['success']) && empty($_GET['success'])){
+	}else if(isset($_GET['email'], $_GET['email_code'])){
 		$email			= trim($_GET['email']);
 		$email_code		= trim($_GET['email_code']);
-		if(email_exists($email) === false){
+		if(!email_exists($email)){
 			$errors[] = 'We couldnt find your email!';
-		} else if(activate($email, $email_code) === false){
+		} else if(!activate($email, $email_code)){
 			$errors[] = 'We have problems activating your account!';
 		}
-		if(empty($errors) === false){?>
+		if(!empty($errors)){?>
 			<h2>Oops...</h2>
 			<p>Please, сheck the spelling of links!</p>
 <?php
-		echo "<div class='errors-output'>";
+		echo "<div class='errors-output' style='float:left;'>";
 			echo output_errors($errors);
 		echo "</div>";
 		}else{?>

@@ -1,6 +1,10 @@
 @charset "utf-8";
 /* CSS Document */
+*{
+	font-family: Space Mono;
+}
 
+/*html, body {font-family: 'Space Mono';}*/
 ul{
 	padding:0;
 	margin:0 0 5px 0;
@@ -43,6 +47,7 @@ a:active{
 	color:#FF4040;
 	font: bold;
 	font-size: 1em;
+	float: right;
 	border: none;
 	margin-right:-10px;
 	margin-top:5px;
@@ -54,7 +59,6 @@ a:active{
 	font: bold;
 	font-size: 1em;
 	border: none;
-/*	margin-right: 195px;*/
 	margin-top:-5px;
 	cursor:pointer;
 	background: transparent;
@@ -74,6 +78,7 @@ ul li input[type="submit"]{
 	border:3px solid rgb(64,199,129);
 	border-radius: 3px;
 }
+
 /* Headers */
 h1 {
 	font-size:1.8em;
@@ -101,8 +106,9 @@ h2 {
 	text-decoration: none;
 	border-radius: 3px;
 	margin-bottom: 5px;
-	background: rgb(64,199,129);
-	box-shadow: 0 -3px rgb(53,167,110) inset;
+/*	background: rgb(64,199,129);
+	box-shadow: 0 -3px rgb(53,167,110) inset;*/
+	background-color: #EC8B72;
 }
 .user-menu:hover { background: rgb(53, 167, 110); }
 .user-menu:active {
@@ -159,24 +165,26 @@ a.top-button:active {
 	text-decoration: none;
 }
 
-
+	html,
+	body {
+		 height: 100%;
+	}
 /* Containers */
 	body{
-		background: url(../images/bgg.jpg) fixed;
-		background-image: url(../images/bgg.jpg) fixed;
-		-moz-background-size: 100%;
-		-webkit-background-size: 100%; 
-		-o-background-size: 100%; 
-		background-size: 100%;
-	/*font:normal 12.5px/1.8em Arial, Helvetica, sans-serif;*/
-		/*font-family:Arial, Helvetica, sans-serif;*/
-		background-size:cover;
-		margin-top:3px;
-		margin-left:3px;
+	/*background-color: #08AEEA;
+	background: -moz-linear-gradient(top, #2af598 0%, #08aeea 100%);
+	background: -webkit-linear-gradient(top, #2af598 0%, #08aeea 100%);
+	background: linear-gradient(to bottom, #2af598 0%, #08aeea 100%);*/
+
+
+	    /*background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);*/
+background-color: #0093E9;
+	background-attachment: fixed;
+	margin-top:3px;
+	margin-left:3px;
 	}
 #container {
 	width:935px;
-	/*min-height:650px;*/
 	overflow: auto;
 	margin:0 auto;
 	padding-right: 5px;
@@ -211,13 +219,7 @@ header {
 	padding: 3px;
 	margin-bottom: 5px;
 }
-/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
 .comment {
 	background: rgb(64,199,129);
 	border-radius: 5px;
@@ -243,9 +245,8 @@ header {
 }
 
 .img-file-error{
-	float:left;
 	background:#FF4040;
-	width: 240px;
+	width: 230px;
 	padding:3px;
 	margin-bottom:3px;
 	border-radius: 5px;
@@ -263,9 +264,6 @@ textarea {
 	resize: none;
 }
 
-.pagination .selected-page{
-	font-weight: bold;
-}
 .user-info{
 	background: rgb(64,199,129);
 	border-radius: 5px;
@@ -296,7 +294,7 @@ textarea {
 
 .round{
 	border-radius: 5px;
-    display: inline-block;
+	 display: inline-block;
 }
 
 select{
@@ -339,7 +337,6 @@ select{
 }
 
 .dropdown-list .dropdown {
-	/* Size & position */
 	position: absolute;
 	top: 100%;
 	left: -5px;
@@ -422,7 +419,7 @@ select{
 	border-left: 3px solid #40C781;
 	border-radius: 0px 0px 0px 3px;
 }
-.tree-settings summary { /* стилями можно задать любую форму, например, тот же плюс. Я специально не стала усложнять, чтобы можно было проще разобраться в коде */
+.tree-settings summary {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -455,7 +452,6 @@ nav ul li a.last {
 
 /* Aside */
 aside {
-	/*background: white;*/
 	font:normal 12px/1.8em Arial, Helvetica, sans-serif;
 	width:270px;
 	margin-left: 15px;
@@ -482,6 +478,9 @@ footer {
 
 .right-profile-info{
 	float:right;
+}
+.right-profile-info a{
+	text-decoration: none;
 }
 .left-profile-info{
 	float: left;
@@ -649,7 +648,8 @@ footer {
 
 .pagination{
 	text-align: center;
-	width: 560px;
+	float:left;
+	margin-left: 290px;
 }
 .pagination .selected-page{
 	text-decoration: none;
@@ -657,7 +657,9 @@ footer {
 	color: #0C66FF;
 	border: 3px solid #40C781;
 	border-radius: 3px;
+	font-weight: bold;
 }
+
 .left{
 	overflow: auto;
 	margin: 0px auto;
@@ -695,10 +697,30 @@ footer {
 	padding: 3px;
 	margin: 3px;
 }
+.message a{
+	text-decoration: none;
+}
 .post{
 	float:left;
 	width:630px;
-	background: rgb(64,199,129);
+	/*background-image: linear-gradient(90deg, #FEE140 0%, #FA709A 100%);*/
+	/*background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);*/
+
+
+background-color:#2987BB ;
+
+	border-radius: 3px;
+	padding: 3px;
+	margin: 2px;
+	word-wrap:break-word;
+}
+.post a {
+	text-decoration:none;
+}
+.about{
+	float:left;
+	width:630px;
+	background: #2980b9;
 	border-radius: 3px;
 	padding: 3px;
 	margin: 2px;
@@ -712,6 +734,9 @@ footer {
 	padding: 3px;
 	margin: 2px;
 	word-wrap:break-word;
+}
+.personal-news a{
+	text-decoration:none;
 }
 .calc-comments{
 	float: right;
@@ -750,6 +775,37 @@ footer {
 	margin-bottom:5px;
 	border-radius: 5px;
 }
+.success-support-output{
+	background: #40C781;
+	margin-top:3px;
+	padding:3px;
+	margin-bottom:5px;
+	border-radius: 5px;
+}
+
+
+.success-dev-output{
+	background: #40C781;
+	margin-top:3px;
+	padding:3px;
+	margin-bottom:5px;
+	border-radius: 5px;
+}
+.success-ads-output{
+	background: #40C781;
+	margin-top:3px;
+	padding:3px;
+	margin-bottom:5px;
+	border-radius: 5px;
+}
+.errors-support-output{
+	background:#FF4040;
+	margin-top:3px;
+	padding:3px;
+	margin-bottom:5px;
+	border-radius: 5px;
+}
+
 .success-registration{
 	background: #40C781;
 	margin-bottom:-1px;
@@ -816,12 +872,6 @@ footer {
 			border-radius: 3px;
 		}
 
-#Go_Top {
-	position: fixed; /* Положение кнопки */   
-	bottom: 60px; /* Расстояние снизу */
-	left: 65px; /* Расстояние справа */
-	cursor: pointer; /* Лучше не трогать */
-}
 
 .calc-messages{
 	float: right;
@@ -912,8 +962,6 @@ footer {
 	 height: 20px;
 }
 
-
-
 .list__item{
 	text-align:center;
   cursor:pointer;
@@ -984,7 +1032,6 @@ width:1.1em}
 	float: left;
 }
 
-/*tut okf*/
 .total-pic-likes{
 	background: rgba(192,192,192,0.7);
 	border-radius: 3px;
@@ -995,9 +1042,6 @@ width:1.1em}
 	position: relative;
 	float: left;
 }
-
-
-
 
 .wrap-delete-pic{
 	float: left;
@@ -1017,7 +1061,24 @@ width:1.1em}
 	margin-top: -655px;
 }
 
+.friends-list{
+	background-color: rgb(64,199,129);
+	border-radius: 3px;
+	margin-top: 40px;
+	padding-left: 3px;
+	height: 20px;
+}
+.friends-list-element{
+	background: rgb(64,199,129);
+	border-radius: 5px;
+	width:370px;
+	padding: 3px;
+	margin-bottom: 5px;
+}
 
+.friends-list-element a{
+	text-decoration: none;
+}
 
 .user-gallery-pic{
 	float: left;
@@ -1035,16 +1096,24 @@ width:1.1em}
 	text-decoration: none;
 }
 #personal-pics{
-    float: left;
-    width: 640px;
-    /*background-color: blue;*/
-    height: 125px;        
-    overflow: hidden;
-    overflow-x: scroll;    
-    white-space:nowrap;
+	 float: left;
+	 width: 640px;
+	 height: 125px;
+	 overflow: hidden;
+	 overflow-x: scroll;
+	 white-space:nowrap;
 }
 
-/*::-webkit-input-placeholder {color:#c0392b;}*/
-/*::-moz-placeholder          {color:#c0392b;}/* Firefox 19+ */*/
-/*:-moz-placeholder           {color:#c0392b;}/* Firefox 18- */*/
-/*:-ms-input-placeholder      {color:#c0392b;}*/
+.left-img{
+	float: left;
+}
+
+.right-img{
+	float: right;
+}
+.tag{
+	text-decoration: none;
+}
+div[title]:hover{
+	cursor: pointer;
+}

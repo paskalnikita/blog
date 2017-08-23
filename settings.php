@@ -3,7 +3,7 @@
 	protect_page();
 	$title = 'Settings';
 	include 'includes/overall/header.php';
-	if(empty($_POST) === false){
+	if(!empty($_POST)){
 		$required_fields = array('first_name', 'email');// поля, которые обязательно не должный быть путыми
 		foreach($_POST as $key => $value){
 			if(empty($value) && in_array($key, $required_fields) === true){
@@ -11,7 +11,7 @@
 				break 1;
 			}
 		}
-		if(empty($errors) === true){
+		if(empty($errors)){
 			if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false){
 				$errors[] = 'A valid email adress is requared';
 			}else if(email_exists($_POST['email']) === true && $user_data['email'] !== $_POST['email']){
@@ -211,15 +211,15 @@ if($_SESSION['update'] == 'success'){// вывод блока об обновл�
 </div>
 			<div class="right-settings">
 <?php
-				if(isset($_FILES['profile']) === true){
-					if(empty($_FILES['profile']['name']) === true){
+				if(isset($_FILES['profile'])){
+					if(empty($_FILES['profile']['name'])){
 						echo "<div class='img-file-error'>Please choose a file!</div>";
 					}else{
 						$allowed = array('jpg', 'jpeg', 'gif', 'png');//допустимые форматы файла
 						$file_name = $_FILES['profile']['name'];
 						$file_extn = strtolower(end(explode('.', $file_name)));
 						$file_temp = $_FILES['profile']['tmp_name'];
-						if(in_array($file_extn, $allowed) === true){
+						if(in_array($file_extn, $allowed)){
 							change_profile_image($session_user_id, $file_temp, $file_extn);// смена аватара
 							header('Location: settings');
 							exit();
@@ -240,5 +240,7 @@ if($_SESSION['update'] == 'success'){// вывод блока об обновл�
 					<input class='green-border' type="submit" value="Change photo">
 				</form>
 			</div>
+
+
 <?php
 	include 'includes/overall/footer.php';?>
