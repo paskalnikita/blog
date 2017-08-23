@@ -7,6 +7,8 @@
 		error_reporting(E_ALL & ~E_NOTICE);// вывод ошибок
 	require 'database/connect.php';// подлючение к бд
 	mysql_query("set names utf8");
+	//получении версии MySQL на сервере
+		//echo mysql_get_server_info();
 	require 'functions/general.php';// функции
 	require 'functions/users.php';// функции
 	include "ip/geoip/geoip.php"; //конфигурация ip
@@ -19,14 +21,14 @@
 								'user_id','username','password','first_name','last_name','email',
 								'password_recover','profile','country','state','city','street','house_number',
 								'zip_code','gender','birth_day','birth_month','birth_year','active','type','allow_email','ip');//выборка значений из бд для массива о пользователе
-		if(user_active($user_data['username']) === false){
+		if(!user_active($user_data['username'])){
 			session_destroy();
 			header('Location: index');
 			exit();
 		}
 		setOnline($user_data['user_id']);
 		//если пароль был восстановлен прошу поменять его на новый
-		if($current_file != 'changepassword.php' && $current_file !== 'logout.php' && $user_data['password_recover'] ==1) {
+		if($current_file != 'changepassword.php' && $current_file != 'logout.php' && $user_data['password_recover'] == 1){
 			header('Location: changepassword?force');
 			exit();
 		}

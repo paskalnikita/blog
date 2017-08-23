@@ -4,9 +4,9 @@
 	protect_page();
 	include 'includes/overall/header.php';?>
 	<h1>Users list</h1>
-		<div style="float:left;margin-left: 5px;">
+		<div style="float:left;margin-left:5px;">
 			<form action="" method="post"> 
-			<input type="text" name="search" style="border:2px solid #40C781;height:19px;width: 270px;" placeholder="Enter username" class='round'/> 
+			<input type="text" name="search" style="border:2px solid #40C781;height:19px;width: 270px;" placeholder="Enter username" class='round'/>
 		</form>
 		</div>
 	<?php
@@ -30,6 +30,11 @@
 				}elseif(!isset($_GET['sort_by_username']) && !isset($_GET['sort_by_id'])){
 					$sort_type = 'user_id';
 				}
-		show_users_list($sort_type);
+				if(isset($_GET['page'])) {
+					$page = $_GET['page'];
+				}else{
+					$page=1;
+					}
+			show_users_list($sort_type,$page);
 		}
 	include 'includes/overall/footer.php';?>

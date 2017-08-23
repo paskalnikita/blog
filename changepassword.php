@@ -16,12 +16,12 @@
 		} else if(strlen($_POST['password']) < 7){
 			$errors[] = 'Password must be at least 7 characters!';
 		}
-	} else{
+	}else{
 		$errors[] = 'Current Password is incorrect!';
 	}
 }
 	include 'includes/overall/header.php';
-	?>
+?>
 		<h1>Change password</h1>
 <?php
 				if(isset($_GET['force']) && empty($_GET['force'])){// если был редирект после восстановления пароля, просим сменить его
@@ -39,7 +39,7 @@
 						echo output_errors($errors);
 					echo "</div>";
 				}
-					?>
+?>
 					<form action="" method="post">
 						<ul>
 							<li>

@@ -16,10 +16,11 @@ $(function(){
 	// $('#container').addClass('animated slideInUp');
 
 //Vanishing blocks whith errors
-		setTimeout(function(){$('.img-file-error').fadeOut('slow')},4000); // for settings
-		setTimeout(function(){$('.errors-output').fadeOut('slow')},5000); //for settings,register
-		setTimeout(function(){$('.success-output').fadeOut('slow')},5000); //for settings,register
-		setTimeout(function(){$('.vanishing').fadeOut('slow')},3500);  //for news
+	setTimeout(function(){$('.img-file-error').fadeOut('slow')},4000);			// for settings
+	setTimeout(function(){$('.errors-output').fadeOut('slow')},5000);				//for settings,register
+	setTimeout(function(){$('.success-output').fadeOut('slow')},5000);			//for settings,register
+	setTimeout(function(){$('.vanishing').fadeOut('slow')},3500);					//for news
+	setTimeout(function(){$('.errors-support-output').fadeOut('slow')},3500);	//for support
 //Name and surname can have only letters
 function lettersOnly(input){
 	var regex = /[^a-z]/gi;

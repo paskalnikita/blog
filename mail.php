@@ -5,14 +5,14 @@
 	include 'includes/overall/header.php';?>
 	<h1>Email for users</h1>
 <?php
-		if(empty($_POST) === false){
-			if(empty($_POST['subject']) === true){
+		if(!empty($_POST)){
+			if(empty($_POST['subject'])){
 				$errors[] = 'Subject requared!';
 			}
-			if(empty($_POST['body']) === true){
+			if(empty($_POST['body'])){
 				$errors[] = 'Body requared!';
 			}
-			if(empty($errors) === false){
+			if(!empty($errors)){
 				echo '<div class="errors-output">';
 					echo output_errors($errors);
 				echo '</div>';
